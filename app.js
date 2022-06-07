@@ -49,7 +49,7 @@ app.use(function(req, res, next) {
   })
 
   app.use(express.static('public'));
-app.get('/index.html', function (req, res) {
+app.get('/', function (req, res) {
    res.sendFile( __dirname + "/" + "index.html" );
 })
 
@@ -66,10 +66,10 @@ app.get('/in/:name/:email',(req,res,next)=> {
 })
 
 
-app.get("/",(req,res)=> {
+/*app.get("/",(req,res)=> {
         res.send("Hello Welcome to Kabelo's API");
         console.log("Running")
-  })
+  })*/
 app.get('/all',(req,res)=> {
     db.func("getall_employees")
      .then(rows => {

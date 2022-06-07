@@ -48,6 +48,11 @@ app.use(function(req, res, next) {
     next();
   })
 
+  app.use(express.static('public'));
+app.get('/index.html', function (req, res) {
+   res.sendFile( __dirname + "/" + "index.html" );
+})
+
 app.get('/in/:name/:email',(req,res,next)=> {
     db.func("fn_add_new_clock",[req.params.email,req.params.name])
     // db.any("SELECT * FROM clock_in_out")
@@ -62,7 +67,7 @@ app.get('/in/:name/:email',(req,res,next)=> {
 
 
 app.get("/",(req,res)=> {
-        res.json("hello");
+        res.send("Hello Welcome to Kabelo's API");
         console.log("Running")
   })
 app.get('/all',(req,res)=> {

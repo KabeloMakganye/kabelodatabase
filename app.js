@@ -61,16 +61,9 @@ app.get('/in/:name/:email',(req,res,next)=> {
 })
 
 
-app.get("/out/:email",(req,res,next)=> {
-    db.func("fn_clock_out",req.params.email)
-   // db.any("SELECT * FROM clock_in_out")
-    .then(rows => {
-        console.log(rows);
-        res.json(rows);
-    }) 
-    .catch(error => {
-        console.log(error);
-    })
+app.get("/",(req,res)=> {
+        res.json("hello");
+        console.log("Running")
   })
 app.get('/all',(req,res)=> {
     db.func("getall_employees")

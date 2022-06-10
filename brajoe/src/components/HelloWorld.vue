@@ -35,8 +35,8 @@
                     </a>-->
                 </div>
             </div>
-            <input type="file"  id="myfile" name="file">
-            <button onclick="upload" >submit</button>
+            <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="upload" multiple>
+            <button @click="upload()" >submit</button>
             <!--<img src="../assets/Machovka-car-Mazda-3.svg" class="hero-img" alt="Illustration"> -->
         </div>
     </section>
@@ -111,7 +111,7 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      file: ''
+      file: '1111'
     }
   },
   methods: {
@@ -122,6 +122,10 @@ export default {
     removemenu () {
       document.getElementById('blur').style.width = '0%'
       document.querySelector('nav').classList.remove('menu-btn')
+    },
+    async upload () {
+      await fetch(`https://kabelodatabase.herokuapp.com/set_pic/${this.$refs.myFiles.files}`)
+      console.log(this.$refs.myFiles.files)
     }
   }
 }

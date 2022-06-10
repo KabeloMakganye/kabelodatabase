@@ -101,7 +101,7 @@ app.get('/set_pic/:pic',(req,res,next)=> {
      })
 })
 
-app.get('/get_pic ',(req,res)=> {
+app.get('/get_pic',(req,res)=> {
     db.func("get_pic ")
      .then(rows => {
          console.log(rows);

@@ -35,7 +35,8 @@
                     </a>-->
                 </div>
             </div>
-
+            <input type="file"  id="myfile" name="file">
+            <button onclick="upload" >submit</button>
             <!--<img src="../assets/Machovka-car-Mazda-3.svg" class="hero-img" alt="Illustration"> -->
         </div>
     </section>
@@ -109,7 +110,8 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      file: ''
     }
   },
   methods: {

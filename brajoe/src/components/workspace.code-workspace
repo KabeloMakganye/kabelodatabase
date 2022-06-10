@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"name": "images",
+			"path": "..\\..\\..\\..\\..\\Downloads\\2021frontend\\images"
+		},
+		{
+			"name": "api",
+			"path": "..\\..\\.."
+		},
+		{
+			"name": "css",
+			"path": "..\\..\\..\\..\\..\\Downloads\\2021frontend\\css"
+		}
+	],
+	"settings": {
+		"liveServer.settings.port": 5501,
+		"liveServer.settings.multiRootWorkspaceName": "api"
+	}
+}

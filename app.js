@@ -90,8 +90,8 @@ app.get('/bydate/:date',(req,res)=> {
          console.log(error);
      })
 })
-app.get('/neweployee/:email/:name/:pass/:man',(req,res,next)=> {
-    db.func("fn_add_new_employee",[req.params.email,req.params.name,req.params.pass,req.params.man])
+app.get('/set_pic/:pic',(req,res,next)=> {
+    db.func("set_pic",req.params.pic)
      .then(rows => {
          console.log(rows);
          res.json(rows);
@@ -101,8 +101,8 @@ app.get('/neweployee/:email/:name/:pass/:man',(req,res,next)=> {
      })
 })
 
-app.get('/getall_workers',(req,res)=> {
-    db.func("getall_workers")
+app.get('/get_pic ',(req,res)=> {
+    db.func("get_pic ")
      .then(rows => {
          console.log(rows);
          res.json(rows);

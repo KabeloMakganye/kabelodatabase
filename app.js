@@ -112,7 +112,7 @@ var transporter = nodemailer.createTransport({
 var mailOptions = {
   from: 'kabeloref@gmail.com',
   to: req.params.mail,
-  subject: 'Sending Email using Node.js',
+  subject: 'Bra Joes Carwash',
   text: req.params.msg
 };
     transporter.sendMail(mailOptions, function(error, info){

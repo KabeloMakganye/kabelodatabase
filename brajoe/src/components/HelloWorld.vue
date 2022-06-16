@@ -3,7 +3,7 @@
   <div @click="removemenu" class="blur" id="blur"></div>
     <div class="navbar">
         <div class="container">
-            <a class="logo" href="#">JOE's<span>DriveThru</span></a>
+            <a class="logo" href="#">BRA JOE<span> CarWash</span></a>
 
             <img @click="addmenu"  class="mobile-menu" src="../assets/menu.svg" alt="Open Navigation">
             <nav id="mysidebar">
@@ -28,29 +28,25 @@
                <!-- <p class="subhead">It's Nitty &amp; Gritty</p> -->
                 <h1>cOmInG sOoN</h1>
                 <p style="font-size:50px">&#128295;&#128296;&#128297;</p>
-                <div class="hero-cta">
-                   <!-- <a href="#" class="primary-cta">Try for free</a>
+               <!-- <div class="hero-cta">
+                    <a href="#" class="primary-cta">Try for free</a>
                     <a href="#" class="watch-video-cta">
                         <img src="../assets/watch.svg" alt="Watch a video">Watch a video
-                    </a>-->
-                </div>
+                    </a>
+                </div> -->
             </div>
-            <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="upload" multiple>
-            <a href="https://kabelodatabase.herokuapp.com/get_pic"  download>aaaa</a>
-            <button href="https://kabelodatabase.herokuapp.com/get_pic" @click="down()"  download>submit</button>
-            <!--<img src="../assets/Machovka-car-Mazda-3.svg" class="hero-img" alt="Illustration"> -->
+           <!-- <img src="../assets/108487139-window-wash-1440.jpg" class="hero-img" alt="Illustration">-->
         </div>
     </section>
 
     <section class="features-section">
         <div class="container">
             <ul class="features-list">
-                <li>Body Polish</li>
-                <!--<li>SMS Task Reminders</li>
-                <li>Confetti Explosions upon Task Completions</li>
-                <li>Social Media Announcements</li>
-                <li>Real Time Collaboration</li>
-                <li>Other awesome features</li> -->
+                <li>Car Waxing</li>
+                <li>Polishing</li>
+                <li>Vehicle interior vacuuming</li>
+                <li>Vehicle interior vacuuming</li>
+                <li>Engine cleaning</li>
             </ul>
 
            <!-- <img src="../assets/holding-phone.jpg" alt="Man holding phone"> -->
@@ -85,20 +81,23 @@
     <section class="contact-section">
         <div class="container">
             <div class="contact-left">
-                <h2>Contact</h2>
+                <h2>Suggestion</h2>
 
-                <form action="">
+                <form id="suggestion" action="">
                     <label for="name">Name</label>
-                    <input type="text" id="name" name="name">
+                    <input type="text" v-model= "sugname" id="name" name="name" required oninvalid="this.setCustomValidity('Enter Name')" oninput="this.setCustomValidity('')">
+
+                    <label for="email">Email</label>
+                    <input type="email" v-model= "sugemail" id="email" name="email" required oninvalid="this.setCustomValidity('Enter Valid Email')" oninput="this.setCustomValidity('')">
 
                     <label for="message">Message</label>
-                    <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                    <textarea name="message" v-model= "sugmessage" id="message" cols="30" rows="10" required oninvalid="this.setCustomValidity('Enter Suggestion message')" oninput="this.setCustomValidity('')"></textarea>
 
                     <input type="submit" class="send-message-cta" value="Send message">
                 </form>
             </div>
             <div class="contact-right">
-               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d706.3995195179168!2d28.09981682917037!3d-25.57926178932074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xd8e9f363d64a5a49!2zMjXCsDM0JzQ1LjQiUyAyOMKwMDYnMDEuMyJF!5e1!3m2!1sen!2sza!4v1654797915015!5m2!1sen!2sza" width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d706.4003803323423!2d28.099735019504372!3d-25.579115927241748!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1824186fdf08ed66!2sBrajoes%20car%20wash!5e1!3m2!1sen!2sza!4v1655380638616!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
         </div>
@@ -112,7 +111,10 @@ export default {
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      file: '1111'
+      file: '1111',
+      sugname: '',
+      sugemail: '',
+      sugmessage: ''
     }
   },
   methods: {
@@ -128,10 +130,18 @@ export default {
       await fetch(`https://kabelodatabase.herokuapp.com/set_pic/${this.$refs.myFiles.files}`)
       console.log(this.$refs.myFiles.files)
     },
-    async down () {
-      const json = { "a": 1, "b": 2 }
-      const string = JSON.stringify(json) // convert Object to a String
-      const encodedString = btoa(string)
+    async sendemail () {
+      let allAreFilled = true /* check if all required fields are entered */
+      document.getElementById('suggestion').querySelectorAll('[required]').forEach(function (i) {
+        if (!allAreFilled) return
+        if (!i.value) allAreFilled = false
+      })
+      if (allAreFilled) {
+        await fetch(`https://kabelodatabase.herokuapp.com/sendemail/${this.sugemail}/` + this.sugname + ' ' + this.sugmessage)
+        alert('submitted')
+      } else {
+        alert('not submitted')
+      }
     }
   }
 }
@@ -141,11 +151,11 @@ export default {
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 :root {
-  --primary-color: #3FBAD4;
+  --primary-color: #31F300;
 }
 
 body {
-  background: #44CAE6;
+  background: #9DF8B0;
   margin: 0;
   font-family: 'Poppins';
 }
@@ -198,6 +208,7 @@ section {
 
 .hero {
   text-align: center;
+      background:url('../assets/108487139-window-wash-1440.jpg')
 }
 
 .left-col .subhead {

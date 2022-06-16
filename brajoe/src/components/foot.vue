@@ -36,7 +36,7 @@
             </tbody>
           </table>
         </div>
-        <div class="navin4">
+        <div class="navin3">
           <table class="foottable">
             <thead>
               <tr>
@@ -109,7 +109,7 @@
             </tbody>
           </table>
         </div>
-        <div class="navin4">
+        <div class="navin3">
            <table class="foottable">
             <thead>
               <tr>

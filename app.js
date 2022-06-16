@@ -104,13 +104,13 @@ app.get('/sendemail/:mail/:msg',(req,res)=> {
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'kabeloref@gmail.com',
-    pass: 'mnjgwzqxafnapprk'
+    user: 'joesdrivethrough@gmail.com',
+    pass: 'hqznwdjsfzzjowdj'
   }
 });
 
 var mailOptions = {
-  from: 'kabeloref@gmail.com',
+  from: 'joesdrivethrough@gmail.com',
   to: req.params.mail,
   subject: 'Bra Joes Carwash',
   text: req.params.msg

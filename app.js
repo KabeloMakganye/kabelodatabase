@@ -122,6 +122,7 @@ var mailOptions = {
           console.log('Email sent: ' + info.response);
         }
       })
+      res.send('email sent');
 })
 app.get('/bydate/:date',(req,res)=> {
     db.func("get_by_date",req.params.date)

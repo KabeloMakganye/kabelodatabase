@@ -93,7 +93,7 @@
                     <label for="message">Message</label>
                     <textarea name="message" v-model= "sugmessage" id="message" cols="30" rows="10" required oninvalid="this.setCustomValidity('Enter Suggestion message')" oninput="this.setCustomValidity('')"></textarea>
 
-                    <input type="submit" class="send-message-cta" value="Send message">
+                    <input type="button" @click="sendemail" class="send-message-cta" value="Send message">
                 </form>
             </div>
             <div class="contact-right">
@@ -137,7 +137,7 @@ export default {
         if (!i.value) allAreFilled = false
       })
       if (allAreFilled) {
-        await fetch(`https://kabelodatabase.herokuapp.com/sendemail/${this.sugemail}/` + this.sugname + ' ' + this.sugmessage)
+        await fetch(`https://kabelodatabase.herokuapp.com/sendemail/joesdrivethrough@gmail.com/` + this.sugemail + ' ' + this.sugname + ' ' + this.sugmessage)
         alert('submitted')
       } else {
         alert('not submitted')
@@ -327,7 +327,7 @@ input, textarea {
           box-sizing: border-box;
 }
 
-input[type="submit"] {
+input[type="button"] {
   background-color: var(--primary-color);
   color: white;
   font-weight: bold;

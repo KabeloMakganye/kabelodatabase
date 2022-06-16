@@ -8,7 +8,6 @@ const cors = require("cors")
 const morgan=require("morgan")
 
 
-
 const app = express();
 
 
@@ -53,6 +52,25 @@ app.get('/', function (req, res) {
    res.sendFile( __dirname + "/" + "index.html" );
 })
 
+var nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'kabeloref@gmail.com',
+    pass: 'Neontle#3'
+  }
+});
+
+var mailOptions = {
+  from: 'kabeloref@gmail.com',
+  to: 'kabelomakganye@icloud.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+
+
+
 app.get('/in/:name/:email',(req,res,next)=> {
     db.func("fn_add_new_clock",[req.params.email,req.params.name])
     // db.any("SELECT * FROM clock_in_out")
@@ -79,6 +97,15 @@ app.get('/all',(req,res)=> {
      .catch(error => {
          console.log(error);
      })
+})
+app.get('/sendemail',(req,res)=> {
+    transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      })
 })
 app.get('/bydate/:date',(req,res)=> {
     db.func("get_by_date",req.params.date)

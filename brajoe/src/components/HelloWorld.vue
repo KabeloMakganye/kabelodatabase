@@ -36,7 +36,8 @@
                 </div>
             </div>
             <input type="file" id="file" ref="myFiles" class="custom-file-input" @change="upload" multiple>
-            <button @click="upload()" >submit</button>
+            <a href="https://kabelodatabase.herokuapp.com/get_pic"  download>aaaa</a>
+            <button href="https://kabelodatabase.herokuapp.com/get_pic" @click="down()"  download>submit</button>
             <!--<img src="../assets/Machovka-car-Mazda-3.svg" class="hero-img" alt="Illustration"> -->
         </div>
     </section>
@@ -126,6 +127,11 @@ export default {
     async upload () {
       await fetch(`https://kabelodatabase.herokuapp.com/set_pic/${this.$refs.myFiles.files}`)
       console.log(this.$refs.myFiles.files)
+    },
+    async down () {
+      const json = { "a": 1, "b": 2 }
+      const string = JSON.stringify(json) // convert Object to a String
+      const encodedString = btoa(string)
     }
   }
 }

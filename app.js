@@ -98,7 +98,7 @@ app.get('/all',(req,res)=> {
          console.log(error);
      })
 })
-app.get('/sendemail/:mail',(req,res)=> {
+app.get('/sendemail/:mail/:msg',(req,res)=> {
     var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
@@ -113,7 +113,7 @@ var mailOptions = {
   from: 'kabeloref@gmail.com',
   to: req.params.mail,
   subject: 'Sending Email using Node.js',
-  text: 'That was easy!'
+  text: req.params.msg
 };
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {

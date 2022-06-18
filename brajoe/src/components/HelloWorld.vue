@@ -26,7 +26,10 @@
         <div class="container">
             <div class="left-col">
                <!-- <p class="subhead">It's Nitty &amp; Gritty</p> -->
-                <h1>cOmInG sOoN</h1>
+                <h1>Website cOmInG sOoN </h1>
+                <h4></h4>
+                <blockquote>"Suggestions bellow will be appreciated"</blockquote>
+                    <cite>- Kabelo Makganye</cite>
                 <p style="font-size:50px">&#128295;&#128296;&#128297;</p>
                <!-- <div class="hero-cta">
                     <a href="#" class="primary-cta">Try for free</a>
@@ -43,9 +46,8 @@
         <div class="container">
             <ul class="features-list">
                 <li>Car Waxing</li>
-                <li>Polishing</li>
                 <li>Vehicle interior vacuuming</li>
-                <li>Vehicle interior vacuuming</li>
+                <li>Full Body Wash</li>
                 <li>Engine cleaning</li>
             </ul>
 
@@ -153,7 +155,12 @@ export default {
 :root {
   --primary-color: #31F300;
 }
-
+/* .left-col blockquote {
+  color: #31F300;
+}
+.left-col cite {
+  color: #31F300;
+} */
 body {
   background: #9DF8B0;
   margin: 0;
@@ -208,7 +215,8 @@ section {
 
 .hero {
   text-align: center;
-      background:url('../assets/108487139-window-wash-1440.jpg')
+      background:url('../assets/108487139-window-wash-1440.jpg');
+      background-image-opacity: 0.2;
 }
 
 .left-col .subhead {

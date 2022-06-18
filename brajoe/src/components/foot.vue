@@ -82,12 +82,12 @@
               </tr>
               <tr>
                 <td>
-                  <a href="tel:0764952492" title="0764952492"><span> 0764952492</span> </a>
+                  <a href="https://wa.me/+27764952492" target="_blank" title="WhatsApp"><span> WhatsApp</span> </a>
                 </td>
               </tr>
               <tr>
                 <td>
-                   <a href="mailto:kabeloref@gmail.com" title="kabeloref@gmail.com"><span> kabeloref@gmail.com</span></a>
+                   <a href="mailto:joesdrivethrough@gmail.com" title="joesdrivethrough@gmail.com"><span> joesdrivethrough@gmail.com</span></a>
                 </td>
               </tr>
                 <tr>

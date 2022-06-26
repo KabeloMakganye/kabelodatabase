@@ -98,7 +98,7 @@ app.get('/all',(req,res)=> {
          console.log(error);
      })
 })
-app.get('/sendemail/:mail/:msg',(req,res)=> {
+app.post('/sendemail',(req,res)=> {
     var nodemailer = require('nodemailer');
 
 var transporter = nodemailer.createTransport({
@@ -111,17 +111,17 @@ var transporter = nodemailer.createTransport({
 
 var mailOptions = {
   from: 'joesdrivethrough@gmail.com',
-  to: req.params.mail,
+  to: req.body.sendereamil,
   subject: 'Suggestion',
-  text: req.params.msg
+  text: req.body.sugestionmessage + req.body.sugestionname
 };
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
-          res.json('not sent');
+          res.send('not sent');
         } else {
           console.log('Email sent: ' + info.response);
-          res.json('email sent');
+          res.send('email sent');
         }
       })
      

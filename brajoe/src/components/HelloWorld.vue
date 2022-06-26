@@ -97,7 +97,7 @@
             <div class="contact-left">
                 <h2>Suggestion</h2>
 
-                <form>
+                <form onsubmit="return false">
                   <div id="suggestions" class="suggestions">
                     <label for="name">Name</label>
                     <input type="text" v-model= "sugname" id="name" name="name" required oninvalid="this.setCustomValidity('Enter Name')" oninput="this.setCustomValidity('')">
@@ -108,8 +108,7 @@
                     <label for="message">Message</label>
                     <textarea style="resize: none;" name="message" v-model= "sugmessage" id="message" cols="30" rows="10" required oninvalid="this.setCustomValidity('Enter Suggestion message')" oninput="this.setCustomValidity('')"></textarea>
 
-                    <input type="submit" @click="sendemail" class="send-message-cta" value="Send message">
-                    <input type="button" @click="register" class="send-message-cta" value="Send message">
+                    <input id="sendesugg" type="submit" @click="sendemail" class="send-message-cta" value="Send message">
                   </div>
                 </form>
             </div>
@@ -160,7 +159,7 @@ export default {
     },
     async register () {
       const axios = require('axios')
-      axios.post('http://localhost:3000/register', {
+      axios.post('https://kabelodatabase.herokuapp.com/register', {
         todo: 'Buy the milk'
       })
         .then((response) => {
@@ -171,19 +170,38 @@ export default {
         })
     },
     async sendemail () {
+      document.getElementById('sendesugg').disabled = true
+      document.getElementById('sendesugg').style.backgroundColor = '#F0998B'
       let allAreFilled = true /* check if all required fields are entered */
       document.getElementById('suggestions').querySelectorAll('[required]').forEach(function (i) {
         if (!allAreFilled) return
         if (!i.value) allAreFilled = false
       })
       if (allAreFilled) {
-        await fetch(`https://kabelodatabase.herokuapp.com/sendemail/joesdrivethrough@gmail.com/` + this.sugname + ' ' + this.sugmessage)
+        const axios = require('axios')
+        await axios.post('http://localhost:3000/sendemail', {
+          todo: 'Buy the milk',
+          sugestionname: this.sugname,
+          sugestionmessage: this.sugmessage,
+          sendereamil: 'joesdrivethrough@gmail.com'
+        })
+          .then((response) => {
+            this.sugname = ''
+            this.sugmessage = ''
+            console.log(response)
+            alert(response.data)
+          }, (error) => {
+            console.log(error)
+          })
+      } else {
+        alert('Enter all required fields')
+      }
+      document.getElementById('sendesugg').disabled = false
+      document.getElementById('sendesugg').style.backgroundColor = '#31F300'
+      /* await fetch(`https://kabelodatabase.herokuapp.com/sendemail/joesdrivethrough@gmail.com/` + this.sugname + ' ' + this.sugmessage)
           .then(response => response.json())
           .then(results => (this.resultsFetched_3 = results))
         alert(this.resultsFetched_3)
-      }
-      /* else {
-        //alert('Enter all required fields')
       } */
     }
   }

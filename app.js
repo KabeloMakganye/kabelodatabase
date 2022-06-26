@@ -129,30 +129,8 @@ var mailOptions = {
 
 //create account
 app.post('/register',(req,res)=> {
-    var nodemailer = require('nodemailer');
-
-var transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: 'joesdrivethrough@gmail.com',
-    pass: 'hqznwdjsfzzjowdj'
-  }
-});
-
-var mailOptions = {
-  from: 'joesdrivethrough@gmail.com',
-  to: req.params.mail,
-  subject: 'Suggestion',
-  text: req.params.msg
-};
-    transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      })
-      res.send('<h1>email sent</h1>');
+    console.log(req.body.todo);
+    res.send("I Bought milk")
 })
 
 app.get('/bydate/:date',(req,res)=> {

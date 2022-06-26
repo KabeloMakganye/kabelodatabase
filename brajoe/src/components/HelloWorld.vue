@@ -1,6 +1,17 @@
-<template>
-  <div class="hello">
+<template @resize="removemenu">
+  <div class="hello"  @resize="removemenu">
   <div @click="removemenu" class="blur" id="blur"></div>
+  <!-- <div @click="removemenu" class="blur2" id="blur2"></div>
+
+  <div class="price">
+    <h1 class="price">Prices</h1>
+    <ol class="price">
+      <li>Saden R60</li>
+      <li>Single Cap van</li>
+      <li>double Cap van</li>
+      <li>Mini bus *Taxi</li>
+    </ol>
+  </div> -->
     <div class="navbar">
         <div class="container">
             <a class="logo" href="#">BRA JOE<span> CarWash</span></a>
@@ -11,12 +22,13 @@
                 <ul class="primary-nav">
                     <li class="current"><a href="#">Home</a></li>
                     <li><a href="#">Features</a></li>
-                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#" @click="addprice">Pricing</a></li>
                 </ul>
 
                 <ul class="secondary-nav">
                     <li><a href="#">Contact</a></li>
-                    <!--<li class="go-premium-cta"><a href="#">Go Premium</a></li> -->
+                    <li class="go-premium-cta"><a href="#">Log in</a></li>
+                    <li class="go-premium-cta"><a href="#">Sign up</a></li>
                 </ul>
             </nav>
         </div>
@@ -85,17 +97,20 @@
             <div class="contact-left">
                 <h2>Suggestion</h2>
 
-                <form id="suggestion" action="">
+                <form>
+                  <div id="suggestions" class="suggestions">
                     <label for="name">Name</label>
                     <input type="text" v-model= "sugname" id="name" name="name" required oninvalid="this.setCustomValidity('Enter Name')" oninput="this.setCustomValidity('')">
 
-                    <label for="email">Email</label>
+                    <!-- <label for="email">Email</label>
                     <input type="email" v-model= "sugemail" id="email" name="email" required oninvalid="this.setCustomValidity('Enter Valid Email')" oninput="this.setCustomValidity('')">
-
+-->
                     <label for="message">Message</label>
-                    <textarea name="message" v-model= "sugmessage" id="message" cols="30" rows="10" required oninvalid="this.setCustomValidity('Enter Suggestion message')" oninput="this.setCustomValidity('')"></textarea>
+                    <textarea style="resize: none;" name="message" v-model= "sugmessage" id="message" cols="30" rows="10" required oninvalid="this.setCustomValidity('Enter Suggestion message')" oninput="this.setCustomValidity('')"></textarea>
 
-                    <input type="button" @click="sendemail" class="send-message-cta" value="Send message">
+                    <input type="submit" @click="sendemail" class="send-message-cta" value="Send message">
+                    <input type="button" @click="register" class="send-message-cta" value="Send message">
+                  </div>
                 </form>
             </div>
             <div class="contact-right">
@@ -116,10 +131,21 @@ export default {
       file: '1111',
       sugname: '',
       sugemail: '',
-      sugmessage: ''
+      sugmessage: '',
+      resultsFetched_3: ''
     }
   },
+  mounted () {
+    window.addEventListener('resize', this.removemenu)
+  },
+  /* unmounted () {
+    window.removeEventListener('resize', this.removemenu)
+  }, */
   methods: {
+    addprice () {
+      document.querySelector('nav').classList.add('menu-btn')
+      document.getElementById('blur2').style.width = '100%'
+    },
     addmenu () {
       document.querySelector('nav').classList.add('menu-btn')
       document.getElementById('blur').style.width = '100%'
@@ -132,18 +158,33 @@ export default {
       await fetch(`https://kabelodatabase.herokuapp.com/set_pic/${this.$refs.myFiles.files}`)
       console.log(this.$refs.myFiles.files)
     },
+    async register () {
+      const axios = require('axios')
+      axios.post('http://localhost:3000/register', {
+        todo: 'Buy the milk'
+      })
+        .then((response) => {
+          console.log(response)
+          alert(response.data)
+        }, (error) => {
+          console.log(error)
+        })
+    },
     async sendemail () {
       let allAreFilled = true /* check if all required fields are entered */
-      document.getElementById('suggestion').querySelectorAll('[required]').forEach(function (i) {
+      document.getElementById('suggestions').querySelectorAll('[required]').forEach(function (i) {
         if (!allAreFilled) return
         if (!i.value) allAreFilled = false
       })
       if (allAreFilled) {
-        await fetch(`https://kabelodatabase.herokuapp.com/sendemail/joesdrivethrough@gmail.com/` + this.sugemail + ' ' + this.sugname + ' ' + this.sugmessage)
-        alert('submitted')
-      } else {
-        alert('not submitted')
+        await fetch(`https://kabelodatabase.herokuapp.com/sendemail/joesdrivethrough@gmail.com/` + this.sugname + ' ' + this.sugmessage)
+          .then(response => response.json())
+          .then(results => (this.resultsFetched_3 = results))
+        alert(this.resultsFetched_3)
       }
+      /* else {
+        //alert('Enter all required fields')
+      } */
     }
   }
 }
@@ -335,7 +376,7 @@ input, textarea {
           box-sizing: border-box;
 }
 
-input[type="button"] {
+input[type="submit"] {
   background-color: var(--primary-color);
   color: white;
   font-weight: bold;
@@ -563,6 +604,25 @@ nav li a:hover {
   overflow-x: visible;
   z-index: 3;
   transition: .8s;
+}
+  .blur2 {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  /* height: 75%; */
+  position: fixed;
+  top:25% ;
+  left: 25%;
+  right: 25%;
+  bottom: 25%;
+  overflow-x: visible;
+  z-index: 3;
+  transition: .8s;
+}
+.price {
+  z-index: 3;
+  position: fixed;
+  left: 30%;
+  top: 20%;
 }
 /*# sourceMappingURL=main.css.map */
 </style>

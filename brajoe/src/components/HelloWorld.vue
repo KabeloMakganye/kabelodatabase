@@ -108,7 +108,7 @@
                     <label for="message">Message</label>
                     <textarea style="resize: none;" name="message" v-model= "sugmessage" id="message" cols="30" rows="10" required oninvalid="this.setCustomValidity('Enter Suggestion message')" oninput="this.setCustomValidity('')"></textarea>
 
-                    <input id="sendesugg" type="submit" @click="sendemail" class="send-message-cta" value="Send message">
+                    <input id="sendesugg" type="button" @click="sendemail" class="send-message-cta" value="Send message">
                   </div>
                 </form>
             </div>
@@ -179,8 +179,7 @@ export default {
       })
       if (allAreFilled) {
         const axios = require('axios')
-        await axios.post('http://localhost:3000/sendemail', {
-          todo: 'Buy the milk',
+        await axios.post('https://kabelodatabase.herokuapp.com/sendemail', {
           sugestionname: this.sugname,
           sugestionmessage: this.sugmessage,
           sendereamil: 'joesdrivethrough@gmail.com'
@@ -394,7 +393,7 @@ input, textarea {
           box-sizing: border-box;
 }
 
-input[type="submit"] {
+input[type="button"] {
   background-color: var(--primary-color);
   color: white;
   font-weight: bold;

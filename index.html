@@ -8133,19 +8133,17 @@ return {
     win.document.write('<iframe src="' + base64URL  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
 }
     const capture = async () => {
-navigator.mediaDevices.getDisplayMedia().then(stream => 
-{
-  let track = stream.getVideoTracks()[0];
-  let capture = new ImageCapture(track);
-  capture.grabFrame().then(bitmap => 
-  {
-    track.stop();
-    canvas.width = bitmap.width;
-    canvas.height = bitmap.height;
-    canvas.getContext('2d').drawImage(bitmap, 0, 0);
-    return Canvas2Image.saveAsPNG(canvas); 
-  });
-})
+      navigator.mediaDevices.getUserMedia({ audio: true, video: { width: 1280, height: 720 } }).then(stream => {
+                     let track = stream.getVideoTracks()[0];
+                     let capture = new ImageCapture(track);
+                     capture.grabFrame().then(bitmap => {
+                         track.stop();
+                         canvas.width = bitmap.width;
+                         canvas.height = bitmap.height;
+                         canvas.getContext('2d').drawImage(bitmap, 0, 0);
+                         return Canvas2Image.saveAsPNG(canvas);
+                     });
+                 })
 .catch(e => console.log(e));
 };
     </script>

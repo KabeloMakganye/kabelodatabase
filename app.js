@@ -129,8 +129,8 @@ var mailOptions = {
 
 //create account
 app.post('/register',(req,res)=> {
-    console.log(req.body.todo);
-    res.send("I Bought milk")
+    console.log("hi"+req.body.todo);
+    res.send("Sign up coming soon")
 })
 
 app.get('/bydate/:date',(req,res)=> {

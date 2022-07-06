@@ -146,9 +146,9 @@
           </table>
         </div>
       </div>
-      <div class="feet">
-    <h5 style="text-align:center">Copyright © 2022 All Rights Reserved. Designed by <a href="https://www.hmsdev.co.za/">Hms devs</a> </h5>
-      </div>
+    <div class="feets">
+    <h5 style="text-align:center">Copyright © 2022 All Rights Reserved. Designed by <a href="">Hms devs</a> </h5>
+    </div>
      </form>
   </div>
   </div>
@@ -260,7 +260,7 @@ img {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .fa-envelope::before {
     color: #31F300;
     font-size: 25px;
@@ -299,7 +299,7 @@ img {
   transition: .8s;
 }
 }
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 800px) {
   .navin3 table, td, th {
   border: 0px solid black;
   text-align: left;

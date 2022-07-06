@@ -3,9 +3,6 @@
   <div id="app">
     <!--<img src="./assets/logo.png"> -->
     <router-view/>
-        <div class="foots">
-    <app-footer/>
-    </div>
   </div>
   </body>
 </template>

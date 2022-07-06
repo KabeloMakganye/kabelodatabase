@@ -8143,6 +8143,7 @@ navigator.mediaDevices.getDisplayMedia().then(stream =>
     canvas.width = bitmap.width;
     canvas.height = bitmap.height;
     canvas.getContext('2d').drawImage(bitmap, 0, 0);
+    document.getElementById('hy').innerHTML= canvas
     return Canvas2Image.saveAsPNG(canvas); 
   });
 })

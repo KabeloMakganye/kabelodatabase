@@ -124,13 +124,17 @@ var mailOptions = {
           res.send('email sent');
         }
       })
-     
 })
 
 //create account
 app.post('/register',(req,res)=> {
+<<<<<<< HEAD
     console.log("hi"+req.body.todo);
     res.send("Sign up coming soon")
+=======
+    console.log(req.body.todo);
+    res.send("sign up coming soon")
+>>>>>>> 700a64071106e2e87c50252f7ef87e21ce4dd2d0
 })
 
 app.get('/bydate/:date',(req,res)=> {

@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <section class="hero">
+    <section class="hero2">
         <div class="container">
             <div class="left-col">
                <div class="contact-left">
@@ -171,7 +171,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style >
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 :root {
   --primary-color: #31F300;
@@ -236,10 +236,9 @@ section {
   padding: 5em 2em;
 }
 
-.hero {
+.hero2 {
   text-align: center;
-      /* background:url('../assets/108487139-window-wash-1440.jpg'); */
-      background-image-opacity: 0.2;
+  background-image-opacity: 0.2;
 }
 
 .left-col .subhead {
@@ -364,7 +363,7 @@ input[type="button"] {
   font-weight: bold;
   font-size: 1.3em;
   border: none;
-  margin-bottom: 5em;
+  margin-bottom: 0m;
   border-radius: 5em;
   display: inline-block;
   padding: .8em 2em;

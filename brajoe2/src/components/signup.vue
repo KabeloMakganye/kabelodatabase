@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <section class="hero">
+    <section class="hero2">
         <div class="container">
             <div class="left-col">
                <div class="contact-left">
@@ -235,7 +235,7 @@ section {
   padding: 5em 2em;
 }
 
-.hero {
+.hero2 {
   text-align: center;
 }
 
@@ -272,7 +272,7 @@ section {
   margin-right: .5em;
 }
 
-.hero-img {
+.hero2-img {
   width: 70%;
   margin-top: 3em;
 }
@@ -475,7 +475,7 @@ nav li a:hover {
   section {
     padding: 10em 4em;
   }
-  .hero .container {
+  .hero2 .container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -484,20 +484,20 @@ nav li a:hover {
             justify-content: space-between;
     text-align: left;
   }
-  .hero .container .left-col {
+  .hero2 .container .left-col {
     margin: 3em 3em 0 5em;
     background: rgba(255, 255, 255, 0.05);
      backdrop-filter: blur(8px);
   }
-  .hero .container .left-col h1 {
+  .hero2 .container .left-col h1 {
     font-size: 3em;
     width: 90%;
   }
-  .hero-img {
+  .hero2-img {
     width: 30%;
     margin-right: 8em;
   }
-  .hero-cta {
+  .hero2-cta {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -576,7 +576,7 @@ nav li a:hover {
 }
 
 @media only screen and (max-width: 1450px) {
-  .hero .container .left-col {
+  .hero2 .container .left-col {
     border: 15px;
     margin: 0em 0em 0 0em;
     background: rgba(255, 255, 255, 0.05);

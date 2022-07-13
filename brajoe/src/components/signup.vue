@@ -59,7 +59,6 @@
                 </form>
             </div>
             </div>
-           <!-- <img src="../assets/108487139-window-wash-1440.jpg" class="hero-img" alt="Illustration">-->
         </div>
     </section>
     <div class="feet">
@@ -238,7 +237,6 @@ section {
 
 .hero2 {
   text-align: center;
-  background-image-opacity: 0.2;
 }
 
 .left-col .subhead {

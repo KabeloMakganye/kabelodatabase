@@ -14,13 +14,13 @@
   </div> -->
     <div class="navbar">
         <div class="container">
-            <a class="logo" href="https://brajoecarwash.web.app/#/">BRA JOE<span> CarWash</span></a>
+            <a class="logo" href="#">BRA JOE<span> CarWash</span></a>
 
             <img @click="addmenu"  class="mobile-menu" src="../assets/menu.svg" alt="Open Navigation">
             <nav id="mysidebar">
                 <img @click="removemenu" id="mobile-exit" class="mobile-menu-exit" src="../assets/exit.svg" alt="Close Navigation">
                 <ul class="primary-nav">
-                    <li class="current"><a href="https://brajoecarwash.web.app/#/">Home</a></li>
+                    <li class="current"><a href="#">Home</a></li>
                     <li><a href="#">Features</a></li>
                     <li><a href="#" @click="addprice">Pricing</a></li>
                 </ul>
@@ -28,7 +28,7 @@
                 <ul class="secondary-nav">
                     <li><a href="#">Contact</a></li>
                     <li class="go-premium-cta"><a href="#">Log in</a></li>
-                    <li class="go-premium-cta"><a href="#">Sign up</a></li>
+                    <li class="go-premium-cta"><a href="https://brajoecarwash.web.app/#/signup">Sign up</a></li>
                 </ul>
             </nav>
         </div>
@@ -37,39 +37,97 @@
     <section class="hero">
         <div class="container">
             <div class="left-col">
-               <div class="contact-left">
-                <h2>SignUp</h2>
-
-                <form onsubmit="return false">
-                  <div id="suggestions" class="suggestions">
-                    <label for="name">Name</label>
-                    <input type="text" v-model= "signname" id="name" name="name" required oninvalid="this.setCustomValidity('Enter Name')" oninput="this.setCustomValidity('')">
-
-                    <label for="email">Email</label>
-                    <input type="email" v-model= "signemail" id="email" name="email" required oninvalid="this.setCustomValidity('Enter Valid Email')" oninput="this.setCustomValidity('')">
-
-                    <label for="password">Password</label>
-                    <input type="password" v-model= "signupPass" id="pass" name="pass" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
-
-                    <label for="password">Confirm Password</label>
-                    <input type="password" v-model= "signupPassCon" id="passcon" name="passcon" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
-
-                    <input id="sendesugg" type="button" @click="register"  class="send-message-cta" value="Sign Up" >
-                  </div>
-                </form>
-            </div>
+               <!-- <p class="subhead">It's Nitty &amp; Gritty</p> -->
+               <!-- <h1>Limited OFFER </h1> -->
+                <h4></h4>
+                <blockquote>"First 10 Cutomers to sign up get 50% discount"</blockquote>
+                    <cite>- ON THEIR SECOND WASH AFTER sign up</cite>
+               <!-- <p style="font-size:50px">&#128295;&#128296;&#128297;</p> -->
+               <!-- <div class="hero-cta">
+                    <a href="#" class="primary-cta">Try for free</a>
+                    <a href="#" class="watch-video-cta">
+                        <img src="../assets/watch.svg" alt="Watch a video">Watch a video
+                    </a>
+                </div> -->
             </div>
            <!-- <img src="../assets/108487139-window-wash-1440.jpg" class="hero-img" alt="Illustration">-->
         </div>
     </section>
-    <div class="feet">
-    <h5 style="text-align:center">Copyright © 2022 All Rights Reserved. Designed by <a href="">Hms devs</a> </h5>
+
+    <section class="features-section">
+        <div class="container">
+            <ul class="features-list">
+                <li>Car Waxing</li>
+                <li>Vehicle interior vacuuming</li>
+                <li>Full Body Wash</li>
+                <li>Engine cleaning</li>
+            </ul>
+
+           <!-- <img src="../assets/holding-phone.jpg" alt="Man holding phone"> -->
+        </div>
+    </section>
+
+    <section class="testimonials-section">
+        <div class="container">
+            <!--<ul>
+                <li>
+                    <img src="../assets/kb.jpg" alt="Person">
+
+                    <blockquote>"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore"</blockquote>
+                    <cite>- Jane Doe</cite>
+                </li>
+                <li>
+                    <img src="../assets/kb.jpg" alt="Person">
+
+                    <blockquote>"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore"</blockquote>
+                    <cite>- Jane Doe</cite>
+                </li>
+                <li>
+                    <img src="../assets/kb.jpg" alt="Person">
+
+                    <blockquote>"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore"</blockquote>
+                    <cite>- Jane Doe</cite>
+                </li>
+            </ul> -->
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-left">
+                <h2>Suggestion</h2>
+
+                <form onsubmit="return false">
+                  <div id="suggestions" class="suggestions">
+                    <label for="name">Name</label>
+                    <input type="text" v-model= "sugname" id="name" name="name" required oninvalid="this.setCustomValidity('Enter Name')" oninput="this.setCustomValidity('')">
+
+                    <!-- <label for="email">Email</label>
+                    <input type="email" v-model= "sugemail" id="email" name="email" required oninvalid="this.setCustomValidity('Enter Valid Email')" oninput="this.setCustomValidity('')">
+-->
+                    <label for="message">Message</label>
+                    <textarea style="resize: none;" name="message" v-model= "sugmessage" id="message" cols="30" rows="10" required oninvalid="this.setCustomValidity('Enter Suggestion message')" oninput="this.setCustomValidity('')"></textarea>
+
+                    <input id="sendesugg" type="button" @click="sendemail" class="send-message-cta" value="Send message">
+                  </div>
+                </form>
+            </div>
+            <div class="contact-right">
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d706.4003803323423!2d28.099735019504372!3d-25.579115927241748!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1824186fdf08ed66!2sBrajoes%20car%20wash!5e1!3m2!1sen!2sza!4v1655380638616!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+        </div>
+    </section>
+            <div class="foots">
+    <app-footer/>
     </div>
   </div>
 </template>
 
 <script>
+import foot from '../components/foot.vue'
 export default {
+  components: { 'app-footer': foot },
   name: 'HelloWorld',
   data () {
     return {
@@ -78,13 +136,7 @@ export default {
       sugname: '',
       sugemail: '',
       sugmessage: '',
-      resultsFetched_3: '',
-
-      // Sign ub variables
-      signname: '',
-      signemail: '',
-      signupPass: '',
-      signupPassCon: ''
+      resultsFetched_3: ''
     }
   },
   mounted () {
@@ -111,26 +163,16 @@ export default {
       console.log(this.$refs.myFiles.files)
     },
     async register () {
-      document.getElementById('sendesugg').disabled = true
-      document.getElementById('sendesugg').style.backgroundColor = '#F0998B'
-      let allAreFilled = true /* check if all required fields are entered */
-      document.getElementById('suggestions').querySelectorAll('[required]').forEach(function (i) {
-        if (!allAreFilled) return
-        if (!i.value) allAreFilled = false
+      const axios = require('axios')
+      axios.post('https://kabelodatabase.herokuapp.com/register', {
+        todo: 'Buy the milk'
       })
-      if (allAreFilled) {
-        const axios = require('axios')
-        axios.post('https://kabelodatabase.herokuapp.com/register', {
-          todo: 'Buy the milk'
+        .then((response) => {
+          console.log(response)
+          alert(response.data)
+        }, (error) => {
+          console.log(error)
         })
-          .then((response) => {
-            console.log(response)
-            alert(response.data)
-          }, (error) => {
-            console.log(error)
-          })
-      }
-      document.getElementById('sendesugg').disabled = false
     },
     async sendemail () {
       document.getElementById('sendesugg').disabled = true
@@ -150,7 +192,7 @@ export default {
           .then((response) => {
             this.sugname = ''
             this.sugmessage = ''
-            console.log(response)
+            // console.log(response)
             alert(response.data)
           }, (error) => {
             console.log(error)
@@ -238,7 +280,7 @@ section {
 
 .hero {
   text-align: center;
-      /* background:url('../assets/108487139-window-wash-1440.jpg'); */
+      background:url('../assets/108487139-window-wash-1440.jpg');
       background-image-opacity: 0.2;
 }
 

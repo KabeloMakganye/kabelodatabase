@@ -55,6 +55,8 @@
                     <input type="password" v-model= "signupPassCon" id="passcon" name="passcon" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
 
                     <input id="sendesugg" type="button" @click="register"  class="send-message-cta" value="Sign Up" >
+
+                    <input type="file" @change="upload">
                   </div>
                 </form>
             </div>
@@ -68,6 +70,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HelloWorld',
   data () {
@@ -83,7 +86,8 @@ export default {
       signname: '',
       signemail: '',
       signupPass: '',
-      signupPassCon: ''
+      signupPassCon: '',
+      pic: null
     }
   },
   mounted () {
@@ -105,9 +109,17 @@ export default {
       document.getElementById('blur').style.width = '0%'
       document.querySelector('nav').classList.remove('menu-btn')
     },
-    async upload () {
-      await fetch(`https://kabelodatabase.herokuapp.com/set_pic/${this.$refs.myFiles.files}`)
-      console.log(this.$refs.myFiles.files)
+    upload (event) {
+      // await fetch(`https://kabelodatabase.herokuapp.com/set_pic/${this.$refs.myFiles.files}`)
+      this.pic = event.target.files[0]
+    },
+    async uploadpic () {
+      const fd = new FormData()
+      fd.append('image', this.pic, this.pic.name)
+      axios.post(`https://kabelodatabase.herokuapp.com/image`, fd)
+        .then(res => {
+          console.log(res)
+        })
     },
     async register () {
       document.getElementById('sendesugg').disabled = true

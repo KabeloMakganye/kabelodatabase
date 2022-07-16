@@ -132,6 +132,20 @@ app.post('/register',(req,res)=> {
     res.send("Sign up coming soon")
 })
 
+app.post('/image',(req,res)=> {
+    console.log("hi"+req.body.pic);
+    db.func("set_pic",req.params.pic)
+    .then(rows => {
+        console.log(rows);
+        res.json(rows);
+        res.send("Sign up coming soon")
+    })
+    .catch(error => {
+        console.log(error);
+        res.send("Something wrong happened")
+    })
+})
+
 app.get('/bydate/:date',(req,res)=> {
     db.func("get_by_date",req.params.date)
      .then(rows => {

@@ -133,8 +133,8 @@ app.post('/register',(req,res)=> {
 })
 
 app.post('/image',(req,res)=> {
-    console.log("hi"+req.body.pic);
-    db.func("set_pic",req.params.pic)
+    console.log("hi"+req.body.fd);
+    db.func("set_pic",req.body.fd)
     .then(rows => {
         console.log(rows);
         res.json(rows);

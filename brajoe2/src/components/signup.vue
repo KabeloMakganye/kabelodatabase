@@ -28,7 +28,7 @@
                 <ul class="secondary-nav">
                     <li><a href="#">Contact</a></li>
                     <li class="go-premium-cta"><a href="#">Log in</a></li>
-                    <li class="go-premium-cta"><a href="#">Sign up</a></li>
+                   <!-- <li class="go-premium-cta"><a href="#">Sign up</a></li> -->
                 </ul>
             </nav>
         </div>
@@ -40,7 +40,7 @@
                <div class="contact-left">
                 <h2>SignUp</h2>
 
-                <form onsubmit="return false">
+                <form id="registerid" onsubmit="return false">
                   <div id="suggestions" class="suggestions">
                     <label for="name">Name</label>
                     <input type="text" v-model= "signname" id="name" name="name" required oninvalid="this.setCustomValidity('Enter Name')" oninput="this.setCustomValidity('')">
@@ -55,8 +55,6 @@
                     <input type="password" v-model= "signupPassCon" id="passcon" name="passcon" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
 
                     <input id="sendesugg" type="button" @click="register"  class="send-message-cta" value="Sign Up" >
-
-                    <input type="file" @change="upload">
                   </div>
                 </form>
             </div>
@@ -115,8 +113,11 @@ export default {
     },
     async uploadpic () {
       const fd = new FormData()
+      console.log(this.pic)
       fd.append('image', this.pic, this.pic.name)
-      axios.post(`https://kabelodatabase.herokuapp.com/image`, fd)
+      axios.post(`http://localhost:3000/image`, {
+        todo: this.pic
+      })
         .then(res => {
           console.log(res)
         })
@@ -142,6 +143,7 @@ export default {
           })
       }
       document.getElementById('sendesugg').disabled = false
+      document.getElementById('sendesugg').style.backgroundColor = '#31F300'
     },
     async sendemail () {
       document.getElementById('sendesugg').disabled = true

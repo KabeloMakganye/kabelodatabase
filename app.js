@@ -120,8 +120,8 @@ var mailOptions = {
           console.log(error);
           res.send('not sent');
         } else {
-          console.log('Email sent: ' + info.response);
-          res.send('email sent');
+          console.log('Suggestion sent: ' + info.response);
+          res.send('suggestion sent');
         }
       })
 })
@@ -133,8 +133,8 @@ app.post('/register',(req,res)=> {
 })
 
 app.post('/image',(req,res)=> {
-    console.log("hi"+req.body.fd);
-    db.func("set_pic",req.body.fd)
+    console.log("hi"+req.body.todo);
+    db.func("set_pic",req.body.todo)
     .then(rows => {
         console.log(rows);
         res.json(rows);

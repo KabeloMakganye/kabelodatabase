@@ -128,16 +128,20 @@ var mailOptions = {
 
 //create account
 app.post('/register',(req,res)=> {
-    console.log("hi"+req.body.todo);
     // res.send("Sign up coming soon")
-    db.func("create_user",req.body.todo,req.body.todo,req.body.todo)
-    if (error) {
-        console.log(error);
-        res.send('not sent');
-      } else {
-        console.log('Suggestion sent: ' + info.response);
-        res.send('registration passed');
-      }
+   db.func("fn_add_new_user",[req.body.todo,req.body.todo,req.body.todo])
+    .then(rows => {
+        if (rows[0].fn_add_new_user > 0) {
+            res.send("User already registered")
+        }
+        else {
+            res.send("Sign up passed")
+        }
+        //console.log(rows[0].fn_add_new_user);
+    })
+    .catch(error => {
+        res.send("Something wrong happened")
+    })
 })
 
 app.post('/image',(req,res)=> {

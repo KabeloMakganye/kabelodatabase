@@ -1,5 +1,5 @@
 <template @resize="removemenu">
-  <div class="hello"  @resize="removemenu">
+  <div class="hello"  >
   <div @click="removemenu" class="blur" id="blur"></div>
   <!-- <div @click="removemenu" class="blur2" id="blur2"></div>
 
@@ -45,14 +45,17 @@
                     <label for="name">Name</label>
                     <input type="text" v-model= "signname" id="name" name="name" required oninvalid="this.setCustomValidity('Enter Name')" oninput="this.setCustomValidity('')">
 
+                    <label for="surname">Surname</label>
+                    <input type="text" v-model= "signsurname" id="surname" name="surname" required oninvalid="this.setCustomValidity('Enter Surname')" oninput="this.setCustomValidity('')">
+
                     <label for="email">Email</label>
                     <input type="email" v-model= "signemail" id="email" name="email" required oninvalid="this.setCustomValidity('Enter Valid Email')" oninput="this.setCustomValidity('')">
 
                     <label for="password">Password</label>
                     <input type="password" v-model= "signupPass" id="pass" name="pass" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
 
-                    <label for="password">Confirm Password</label>
-                    <input type="password" v-model= "signupPassCon" id="passcon" name="passcon" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
+                    <label for="conpassword">Confirm Password</label>
+                    <input type="conpassword" v-model= "signupPassCon" id="passcon" name="passcon" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
 
                     <input id="sendesugg" type="button" @click="register"  class="send-message-cta" value="Sign Up" >
                   </div>
@@ -82,6 +85,7 @@ export default {
 
       // Sign ub variables
       signname: '',
+      signsurname: '',
       signemail: '',
       signupPass: '',
       signupPassCon: '',
@@ -132,8 +136,10 @@ export default {
       })
       if (allAreFilled) {
         const axios = require('axios')
-        axios.post('https://kabelodatabase.herokuapp.com/register', {
-          todo: 'Buy the milk'
+        axios.post('http://localhost:3000/register', {
+          name: this.signname,
+          surname: this.signsurname,
+          email: this.signemail
         })
           .then((response) => {
             console.log(response)
@@ -144,9 +150,6 @@ export default {
       }
       document.getElementById('sendesugg').disabled = false
       document.getElementById('sendesugg').style.backgroundColor = '#31F300'
-      if (document.getElementById('sendesugg').disabled === false) {
-        document.getElementById('registerid').reset()
-      }
     },
     async sendemail () {
       document.getElementById('sendesugg').disabled = true
@@ -378,7 +381,7 @@ input[type="button"] {
   font-weight: bold;
   font-size: 1.3em;
   border: none;
-  margin-bottom: 5em;
+  margin-bottom: 0em;
   border-radius: 5em;
   display: inline-block;
   padding: .8em 2em;

@@ -144,6 +144,9 @@ export default {
       }
       document.getElementById('sendesugg').disabled = false
       document.getElementById('sendesugg').style.backgroundColor = '#31F300'
+      if (document.getElementById('sendesugg').disabled === false) {
+        document.getElementById('registerid').reset()
+      }
     },
     async sendemail () {
       document.getElementById('sendesugg').disabled = true

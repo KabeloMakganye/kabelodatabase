@@ -129,7 +129,15 @@ var mailOptions = {
 //create account
 app.post('/register',(req,res)=> {
     console.log("hi"+req.body.todo);
-    res.send("Sign up coming soon")
+    // res.send("Sign up coming soon")
+    db.func("create_user",req.body.todo,req.body.todo,req.body.todo)
+    if (error) {
+        console.log(error);
+        res.send('not sent');
+      } else {
+        console.log('Suggestion sent: ' + info.response);
+        res.send('registration passed');
+      }
 })
 
 app.post('/image',(req,res)=> {

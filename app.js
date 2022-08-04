@@ -129,7 +129,10 @@ var mailOptions = {
 //create account
 app.post('/register',(req,res)=> {
     // res.send("Sign up coming soon")
-   db.func("fn_add_new_user",[req.body.todo,req.body.todo,req.body.todo])
+   db.func("fn_add_new_user",[
+    req.body.name,
+    req.body.surname,
+    req.body.email])
     .then(rows => {
         if (rows[0].fn_add_new_user > 0) {
             res.send("User already registered")

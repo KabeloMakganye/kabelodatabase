@@ -55,7 +55,7 @@
                     <input type="password" v-model= "signupPass" id="pass" name="pass" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
 
                     <label for="conpassword">Confirm Password</label>
-                    <input type="conpassword" v-model= "signupPassCon" id="passcon" name="passcon" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
+                    <input type="password" v-model= "signupPassCon" id="passcon" name="passcon" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
 
                     <input id="sendesugg" type="button" @click="register"  class="send-message-cta" value="Sign Up" >
                   </div>
@@ -119,7 +119,7 @@ export default {
       const fd = new FormData()
       console.log(this.pic)
       fd.append('image', this.pic, this.pic.name)
-      axios.post(`http://localhost:3000/image`, {
+      axios.post(`https://kabelodatabase.herokuapp.com/image`, {
         todo: this.pic
       })
         .then(res => {
@@ -136,7 +136,7 @@ export default {
       })
       if (allAreFilled) {
         const axios = require('axios')
-        axios.post('http://localhost:3000/register', {
+        axios.post('https://kabelodatabase.herokuapp.com/register', {
           name: this.signname,
           surname: this.signsurname,
           email: this.signemail
@@ -431,7 +431,11 @@ nav li a:hover {
   margin: .5em;
   cursor: pointer;
 }
-
+@media screen and (max-width: 768px)  {
+  input, select, textarea {
+    font-size: 16px;
+  }
+}
 @media only screen and (min-width: 768px) {
   .mobile-menu, .mobile-menu-exit {
     display: none;

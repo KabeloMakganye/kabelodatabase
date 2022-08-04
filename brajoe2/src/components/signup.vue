@@ -134,12 +134,13 @@ export default {
         if (!allAreFilled) return
         if (!i.value) allAreFilled = false
       })
-      if (allAreFilled) {
+      if (allAreFilled && this.signupPass === this.signupPassCon) {
         const axios = require('axios')
-        axios.post('https://kabelodatabase.herokuapp.com/register', {
+        axios.post('http://localhost:3000/register', {
           name: this.signname,
           surname: this.signsurname,
-          email: this.signemail
+          email: this.signemail,
+          password: this.signupPass
         })
           .then((response) => {
             console.log(response)
@@ -147,6 +148,8 @@ export default {
           }, (error) => {
             console.log(error)
           })
+      } else if (this.signupPass === this.signupPassCon) {
+        alert('Passwords did not match')
       }
       document.getElementById('sendesugg').disabled = false
       document.getElementById('sendesugg').style.backgroundColor = '#31F300'

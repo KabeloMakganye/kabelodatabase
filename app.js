@@ -135,7 +135,43 @@ app.post('/register',(req,res)=> {
     req.body.email])
     .then(rows => {
         if (rows[0].fn_add_new_user > 0) {
-            res.send("User already registered")
+            //res.send("User registractered please confirm")
+            var nodemailer = require('nodemailer');
+
+            var transporter = nodemailer.createTransport({
+              service: 'gmail',
+              auth: {
+                user: 'joesdrivethrough@gmail.com',
+                pass: 'hqznwdjsfzzjowdj'
+              }
+            });
+            
+            var mailOptions = {
+              from: 'joesdrivethrough@gmail.com',
+              to: req.body.email,
+              subject: 'BraJoes car wash login details',
+              text: 'Hi. '+
+              '\n\nYour user details are as follows. '+
+              '\n\nName: '+req.body.name+
+              '\n'+'Surname: '+req.body.surname+
+              '\nPassword: '+ req.body.password+ 
+              '\nReference number: '+ rows[0].fn_add_new_user+
+              '\n\nKind regards'+
+              '\nBrajoe Car wash '
+              //html:'<img src="https://brajoecarwash.web.app/static/img/108487139-window-wash-1440.62d1981.jpg">'
+
+            };
+                transporter.sendMail(mailOptions, function(error, info){
+                    if (error.message == 'No recipients defined') {
+                      console.log(error.message);
+                      res.send('Invalid email. please enter valid email. Ao');
+                    } else if (error) {
+                        res.send('Something went wrong. please try again.');
+                    } else {
+                      console.log('Suggestion sent: ' + info.response);
+                      res.send('User registered, copy of login details sent to your email');
+                    }
+                  })
         }
         else {
             res.send("Sign up passed")

@@ -188,6 +188,15 @@ app.post('/register',(req,res)=> {
                     } else {
                       console.log('Suggestion sent: ' + info.response);
                       res.send('User registered, copy of login details sent to your email');
+
+
+                      db.func("fn_activate_new_user",rows[0].fn_add_new_user)
+                      .then(rows => {
+                          console.log(rows);
+                      })
+                      .catch(error => {
+                          console.log(error);
+                      })
                       //add activation procedure here
                     }
                   })

@@ -159,7 +159,14 @@ app.post('/register',(req,res)=> {
               '\nReference number: '+ rows[0].fn_add_new_user+
               '\n\nKind regards'+
               '\nBrajoe Car wash ',
-              html:'hello'
+              html:'<p>Hi.</p> '+
+              '<br><br><p>Your user details are as follows. </p>'+
+              '<br><br><p>Name: '+req.body.name+
+              '</p><br>'+'<p>Surname: '+req.body.surname+
+              '</p><br><p>Password: '+ req.body.password+ 
+              '</p><br><p>Reference number: '+ rows[0].fn_add_new_user+
+              '</p><br><br><p>Kind regards'+
+              '</p><br><p>Brajoe Car wash </p>'
 
             };
                 transporter.sendMail(mailOptions, function(error, info){

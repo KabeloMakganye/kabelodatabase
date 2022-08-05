@@ -143,8 +143,8 @@ app.post('/register',(req,res)=> {
               auth: {
                 user: 'joesdrivethrough@gmail.com',
                 pass: 'hqznwdjsfzzjowdj'
-              },
-              from: 'joesdrivethrough@gmail.com',
+              }
+             // from: 'joesdrivethrough@gmail.com',
             });
             
             var mailOptions = {

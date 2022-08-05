@@ -132,7 +132,8 @@ app.post('/register',(req,res)=> {
    db.func("fn_add_new_user",[
     req.body.name,
     req.body.surname,
-    req.body.email])
+    req.body.email,
+    req.body.password])
     .then(rows => {
         if (rows[0].fn_add_new_user > 1) {
             //res.send("User registractered please confirm")

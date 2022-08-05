@@ -127,29 +127,33 @@ export default {
         })
     },
     async register () {
-      document.getElementById('sendesugg').disabled = true
-      document.getElementById('sendesugg').style.backgroundColor = '#F0998B'
-      let allAreFilled = true /* check if all required fields are entered */
-      document.getElementById('suggestions').querySelectorAll('[required]').forEach(function (i) {
-        if (!allAreFilled) return
-        if (!i.value) allAreFilled = false
-      })
-      if (allAreFilled) {
-        const axios = require('axios')
-        axios.post('https://kabelodatabase.herokuapp.com/register', {
-          name: this.signname,
-          surname: this.signsurname,
-          email: this.signemail,
-          password: this.signupPass
+      if (this.signupPass === this.signupPassCon) {
+        document.getElementById('sendesugg').disabled = true
+        document.getElementById('sendesugg').style.backgroundColor = '#F0998B'
+        let allAreFilled = true /* check if all required fields are entered */
+        document.getElementById('suggestions').querySelectorAll('[required]').forEach(function (i) {
+          if (!allAreFilled) return
+          if (!i.value) allAreFilled = false
         })
-          .then((response) => {
-            console.log(response)
-            alert(response.data)
-          }, (error) => {
-            console.log(error)
+        if (allAreFilled) {
+          const axios = require('axios')
+          axios.post('https://kabelodatabase.herokuapp.com/register', {
+            name: this.signname,
+            surname: this.signsurname,
+            email: this.signemail,
+            password: this.signupPass
           })
+            .then((response) => {
+              console.log(response)
+              alert(response.data)
+            }, (error) => {
+              console.log(error)
+            })
+        } else {
+          alert('fill up everything')
+        }
       } else {
-        alert('fill up everything')
+        alert('Passwords are not the same')
       }
       document.getElementById('sendesugg').disabled = false
       document.getElementById('sendesugg').style.backgroundColor = '#31F300'
@@ -167,7 +171,8 @@ export default {
         await axios.post('https://kabelodatabase.herokuapp.com/sendemail', {
           sugestionname: this.sugname,
           sugestionmessage: this.sugmessage,
-          sendereamil: 'joesdrivethrough@gmail.com'
+          sendereamil: 'joesdrivethrough@gmail.com',
+          password: this.signupPass
         })
           .then((response) => {
             this.sugname = ''

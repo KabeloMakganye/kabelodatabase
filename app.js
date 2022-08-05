@@ -145,7 +145,6 @@ app.post('/register',(req,res)=> {
                 pass: 'hqznwdjsfzzjowdj'
               },
               from: 'joesdrivethrough@gmail.com',
-              cc: 'kabeloref@gmail.com'
             });
             
             var mailOptions = {
@@ -159,8 +158,8 @@ app.post('/register',(req,res)=> {
               '\nPassword: '+ req.body.password+ 
               '\nReference number: '+ rows[0].fn_add_new_user+
               '\n\nKind regards'+
-              '\nBrajoe Car wash '
-              //html:'<img src="https://brajoecarwash.web.app/static/img/108487139-window-wash-1440.62d1981.jpg">'
+              '\nBrajoe Car wash ',
+              html:'hello'
 
             };
                 transporter.sendMail(mailOptions, function(error, info){

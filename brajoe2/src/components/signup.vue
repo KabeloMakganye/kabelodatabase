@@ -134,7 +134,7 @@ export default {
         if (!allAreFilled) return
         if (!i.value) allAreFilled = false
       })
-      if (allAreFilled && this.signupPass === this.signupPassCon) {
+      if (allAreFilled) {
         const axios = require('axios')
         axios.post('http://localhost:3000/register', {
           name: this.signname,
@@ -148,8 +148,8 @@ export default {
           }, (error) => {
             console.log(error)
           })
-      } else if (this.signupPass === this.signupPassCon) {
-        alert('Passwords did not match')
+      } else {
+        alert('fill up everything')
       }
       document.getElementById('sendesugg').disabled = false
       document.getElementById('sendesugg').style.backgroundColor = '#31F300'

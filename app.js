@@ -134,7 +134,7 @@ app.post('/register',(req,res)=> {
     req.body.surname,
     req.body.email])
     .then(rows => {
-        if (rows[0].fn_add_new_user > 0) {
+        if (rows[0].fn_add_new_user > 1) {
             //res.send("User registractered please confirm")
             var nodemailer = require('nodemailer');
 
@@ -162,19 +162,31 @@ app.post('/register',(req,res)=> {
 
             };
                 transporter.sendMail(mailOptions, function(error, info){
-                    if (error.message == 'No recipients defined') {
+                    /*if (error.message == 'No recipients defined') {
                       console.log(error.message);
                       res.send('Invalid email. please enter valid email. Ao');
-                    } else if (error) {
-                        res.send('Something went wrong. please try again.');
+                      return;
+                    } else */
+                    if (error) {
+                        if (error.message == 'No recipients defined' )
+                        {
+                            res.send('Invalid email. please enter valid email. Ao.');
+                        }
+                        else {
+                            res.send('Something went wrong. please try again.');
+                        }
+                        console.log(error.message);
                     } else {
                       console.log('Suggestion sent: ' + info.response);
                       res.send('User registered, copy of login details sent to your email');
+                      //add activation procedure here
                     }
                   })
+                  //res.send('User registered, copy of login details sent to your email');
         }
         else {
-            res.send("Sign up passed")
+            res.send("user already registered")
+            console.log(rows[0].fn_add_new_user);
         }
         //console.log(rows[0].fn_add_new_user);
     })

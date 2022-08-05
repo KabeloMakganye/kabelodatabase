@@ -160,13 +160,13 @@ app.post('/register',(req,res)=> {
               '\n\nKind regards'+
               '\nBrajoe Car wash ',
               html:'<p>Hi.</p> '+
-              '<br><br><p>Your user details are as follows. </p>'+
+              '<br><p>Your user details are as follows. </p>'+
               '<br><br><p>Name: '+req.body.name+
-              '</p><br>'+'<p>Surname: '+req.body.surname+
-              '</p><br><p>Password: '+ req.body.password+ 
-              '</p><br><p>Reference number: '+ rows[0].fn_add_new_user+
+              '</p>'+'<p>Surname: '+req.body.surname+
+              '</p><p>Password: '+ req.body.password+ 
+              '</p><p>Reference number: '+ rows[0].fn_add_new_user+
               '</p><br><br><p>Kind regards'+
-              '</p><br><p>Brajoe Car wash </p>'
+              '</p><p>Brajoe Car wash </p>'
 
             };
                 transporter.sendMail(mailOptions, function(error, info){

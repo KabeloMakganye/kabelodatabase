@@ -125,7 +125,16 @@ var mailOptions = {
         }
       })
 })
-
+//count number of page visits
+app.get('/fn_add_load',(req,res)=> {
+    db.func("fn_add_load")
+     .then(rows => {
+         res.json(rows);
+     })
+     .catch(error => {
+         console.log(error);
+     })
+})
 //create account
 app.post('/register',(req,res)=> {
     // res.send("Sign up coming soon")

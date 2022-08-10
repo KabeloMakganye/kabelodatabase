@@ -28,7 +28,7 @@
                 <ul class="secondary-nav">
                     <li><a href="#">Contact</a></li>
                     <li class="go-premium-cta"><a href="#">Log in</a></li>
-                    <li class="go-premium-cta"><a href="https://brajoecarwash.web.app/#/signup">Sign up</a></li>
+                    <li class="go-premium-cta"><a href="https://brajoecarwash.co.za/#/signup">Sign up</a></li>
                 </ul>
             </nav>
         </div>
@@ -139,9 +139,7 @@ export default {
       resultsFetched_3: ''
     }
   },
-  mounted () {
-    window.addEventListener('resize', this.removemenu)
-  },
+
   /* unmounted () {
     window.removeEventListener('resize', this.removemenu)
   }, */
@@ -207,7 +205,14 @@ export default {
           .then(results => (this.resultsFetched_3 = results))
         alert(this.resultsFetched_3)
       } */
+    },
+    async count () {
+      await fetch(`https://kabelodatabase.herokuapp.com/fn_add_load`)
     }
+  },
+  mounted () {
+    window.addEventListener('resize', this.removemenu)
+    this.count()
   }
 }
 </script>

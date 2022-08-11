@@ -235,7 +235,18 @@ app.post('/image',(req,res)=> {
         res.send("Something wrong happened")
     })
 })
-
+//everything hooked
+app.get('/fn_add_new_order/:odate/:cname/:details/:progress',(req,res,next)=> {
+    db.func("fn_add_new_order",[req.params.odate,req.params.cname,req.params.details,req.params.progress])
+     .then(rows => {
+         console.log(rows);
+         res.json(rows);
+     }) 
+     .catch(error => {
+         console.log(error);
+     })
+})
+//end of everythig hooked
 app.get('/bydate/:date',(req,res)=> {
     db.func("get_by_date",req.params.date)
      .then(rows => {

@@ -136,7 +136,8 @@ export default {
       sugname: '',
       sugemail: '',
       sugmessage: '',
-      resultsFetched_3: ''
+      resultsFetched_3: '',
+      atload: 0
     }
   },
 
@@ -212,7 +213,27 @@ export default {
   },
   mounted () {
     window.addEventListener('resize', this.removemenu)
-    this.count()
+    // create a cookie that will help us coont number of page visits.
+    let coo = ''
+    let decodedCookie = decodeURIComponent(document.cookie)
+    let ca = decodedCookie.split(';')
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i]
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1)
+      }
+      if (c.indexOf('logs=') === 0) {
+        coo = c.substring('logs=', c.length)
+      }
+    }
+    if (coo.length <= 1) {
+      const d = new Date()
+      d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000))
+      d.setUTCHours(0, 0, 0)
+      let expires = 'expires=' + d.toUTCString()
+      document.cookie = 'logs' + '=' + 'counterslog' + ';' + expires + ';path=/'
+      this.count()
+    }
   }
 }
 </script>

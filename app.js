@@ -138,13 +138,14 @@ app.get('/fn_add_load/:website',(req,res)=> {
 //create account
 app.post('/register',(req,res)=> {
     // res.send("Sign up coming soon")
-    var MD5 = require("crypto-js/SHA1");
+    var MD5 = require("crypto-js");
     console.log(MD5("Message").toString());
    db.func("fn_add_new_user",[
     req.body.name,
     req.body.surname,
     req.body.email,
-    MD5(req.body.password).toString()])
+    MD5.calcSHA1(req.body.password) //,MD5(req.body.password).toString()
+])
     .then(rows => {
         if (rows[0].fn_add_new_user > 1) {
             //res.send("User registractered please confirm")

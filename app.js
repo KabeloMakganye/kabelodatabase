@@ -136,9 +136,9 @@ app.get('/fn_add_load/:website',(req,res)=> {
      })
 })
 //create account
-function datas(ab) {
+function datas(ab,cd) {
     var MD5 = require("crypto-js/md5");
-    for (var x = ab.length; x--; x > 0) {
+    for (var x = ab.length + cd.length; x--; x > 0) {
         ab = MD5(ab).toString();
     }
     return ab;
@@ -149,7 +149,7 @@ app.post('/register',(req,res)=> {
     req.body.name,
     req.body.surname,
     req.body.email,
-    datas(req.body.password)])
+    datas(req.body.password,req.body.name)])
     .then(rows => {
         if (rows[0].fn_add_new_user > 1) {
             //res.send("User registractered please confirm")

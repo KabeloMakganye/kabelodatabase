@@ -208,7 +208,7 @@ export default {
       } */
     },
     async count () {
-      await fetch(`https://kabelodatabase.herokuapp.com/fn_add_load`)
+      await fetch(`https://kabelodatabase.herokuapp.com/fn_add_load/brajoe`)
     }
   },
   mounted () {
@@ -222,8 +222,8 @@ export default {
       while (c.charAt(0) === ' ') {
         c = c.substring(1)
       }
-      if (c.indexOf('logs=') === 0) {
-        coo = c.substring('logs=', c.length)
+      if (c.indexOf('logsbrajoe=') === 0) {
+        coo = c.substring('logsbrajoe=', c.length)
       }
     }
     if (coo.length <= 1) {
@@ -231,7 +231,7 @@ export default {
       d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000))
       d.setUTCHours(0, 0, 0)
       let expires = 'expires=' + d.toUTCString()
-      document.cookie = 'logs' + '=' + 'counterslog' + ';' + expires + ';path=/'
+      document.cookie = 'logsbrajoe' + '=' + 'brajoecarwash' + ';' + expires + ';path=/'
       this.count()
     }
   }

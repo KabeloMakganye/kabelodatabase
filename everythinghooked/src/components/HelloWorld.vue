@@ -26,9 +26,27 @@
                 </ul>
 
                 <ul class="secondary-nav">
-                    <li><a href="#">Contact</a></li>
-                    <!-- <li class="go-premium-cta"><a href="#">Log in</a></li>
-                    <li class="go-premium-cta"><a href="https://brajoecarwash.co.za/#/signup">Sign up</a></li> -->
+                    <!--<li><a href="#">Contact</a></li>-->
+                    <li>
+                      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                      <div class="navin">
+                        <a href="https://www.instagram.com/everything_hooked/" ><span class="fa fa-instagram"></span></a>
+                      </div>
+                      </li>
+                      <li>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                        <div class="navin">
+                          <a href="https://wa.me/+27608581873" target="_blank" ><span class="fa fa-whatsapp"></span></a>
+                        </div>
+                      </li>
+                      <li>
+                        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                        <div class="navin">
+                          <a href="tel:+27608581873" target="_blank" ><span class="fa fa-phone"></span></a>
+                        </div>
+                      </li>
+                     <!-- <li class="go-premium-cta"><a href="#">Log in</a></li>
+                    <li class="go-premium-cta"><a href="https://brajoecarwash.co.za/#/signup">Sign up</a></li>-->
                 </ul>
             </nav>
         </div>
@@ -52,16 +70,16 @@
            <!-- <img src="../assets/108487139-window-wash-1440.jpg" class="hero-img" alt="Illustration">-->
         </div>
     </section>
-            <!-- <div class="foots">
+             <div class="foots">
     <app-footer/>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
-// import foot from '../components/foot.vue'
+import foot from '../components/foot.vue'
 export default {
-  // components: { 'app-footer': foot },
+  components: { 'app-footer': foot },
   name: 'HelloWorld',
   data () {
     return {
@@ -156,8 +174,8 @@ export default {
       while (c.charAt(0) === ' ') {
         c = c.substring(1)
       }
-      if (c.indexOf('logs=') === 0) {
-        coo = c.substring('logs=', c.length)
+      if (c.indexOf('logseverything=') === 0) {
+        coo = c.substring('logseverything=', c.length)
       }
     }
     if (coo.length <= 1) {
@@ -175,6 +193,8 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style >
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patua+One&display=swap');
 :root {
   --primary-color: rgb(193,98,134);
 }
@@ -189,7 +209,9 @@ export default {
 body {
   background: rgb(193,98,134);
   margin: 0;
-  font-family: 'Poppins';
+  /* font-family: 'Poppins'; */
+  /* font-family: 'Indie Flower'; */
+  font-family: 'Patua One', cursive;
 }
 
 .navbar {
@@ -240,7 +262,8 @@ section {
 
 .hero {
   text-align: center;
-      /* background:url('../assets/108487139-window-wash-1440.jpg'); */
+      background:url('../assets/hooked2.jpg');
+      background-size: contain;
       background-image-opacity: 0.2;
 }
 

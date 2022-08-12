@@ -138,7 +138,7 @@ app.get('/fn_add_load/:website',(req,res)=> {
 //create account
 app.post('/register',(req,res)=> {
     // res.send("Sign up coming soon")
-    var MD5 = require("crypto-js/md5");
+    var MD5 = require("crypto-js/SHA1");
     console.log(MD5("Message").toString());
    db.func("fn_add_new_user",[
     req.body.name,

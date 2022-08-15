@@ -236,7 +236,7 @@ app.post('/login',(req,res)=> {
     req.body.email,
     datas(req.body.password)])
     .then(rows => {
-        if (rows[0].fn_add_new_user == 1) {
+        if (rows[0].fn_add_new_user >= 1) {
             res.send("1") //login sucess
         } else if (rows[0].fn_add_new_user == -2){
             res.send("-2") // wrong password

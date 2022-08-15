@@ -138,9 +138,9 @@ app.get('/fn_add_load/:website',(req,res)=> {
 //create account
 function datas(ab) { // ab is password and cd is user name
     var MD5 = require("crypto-js/md5");
-    for (var x = ab.length; x--; x > 0) {
-        ab = MD5(ab).toString();
-    }
+    //for (var x = ab.length + cd.length; x--; x > 0) {
+    ab = MD5(ab).toString();
+    //}
     return ab;
 }
 app.post('/register',(req,res)=> {

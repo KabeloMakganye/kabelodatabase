@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import foot from '@/components/foot'
 import signup from '@/components/signup'
 import login from '@/components/login'
+import user from '@/components/user'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: login
+    },
+    {
+      path: '/user',
+      name: 'user',
+      component: user
     }
   ]
 })

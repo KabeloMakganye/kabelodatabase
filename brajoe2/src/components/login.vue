@@ -38,15 +38,15 @@
         <div class="container">
             <div class="left-col">
                <div class="contact-left">
-                <h2>SignUp</h2>
+                <h2>Login</h2>
 
                 <form id="registerid" onsubmit="return false">
                   <div id="suggestions" class="suggestions">
-                    <label for="name">Name</label>
+                    <!--<label for="name">Name</label>
                     <input type="text" v-model= "signname" id="name" name="name" required oninvalid="this.setCustomValidity('Enter Name')" oninput="this.setCustomValidity('')">
 
                     <label for="surname">Surname</label>
-                    <input type="text" v-model= "signsurname" id="surname" name="surname" required oninvalid="this.setCustomValidity('Enter Surname')" oninput="this.setCustomValidity('')">
+                    <input type="text" v-model= "signsurname" id="surname" name="surname" required oninvalid="this.setCustomValidity('Enter Surname')" oninput="this.setCustomValidity('')"> -->
 
                     <label for="email">Email</label>
                     <input type="email" v-model= "signemail" id="email" name="email" required oninvalid="this.setCustomValidity('Enter Valid Email')" oninput="this.setCustomValidity('')">
@@ -54,10 +54,10 @@
                     <label for="password">Password</label>
                     <input type="password" v-model= "signupPass" id="pass" name="pass" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
 
-                    <label for="conpassword">Confirm Password</label>
-                    <input type="password" v-model= "signupPassCon" id="passcon" name="passcon" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')">
+                    <!--<label for="conpassword">Confirm Password</label>
+                    <input type="password" v-model= "signupPassCon" id="passcon" name="passcon" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')"> -->
 
-                    <input id="sendesugg" type="button" @click="register"  class="send-message-cta" value="Sign Up" >
+                    <input id="sendesugg" type="button" @click="login"  class="send-message-cta" value="Sign Up" >
                   </div>
                 </form>
             </div>
@@ -126,35 +126,30 @@ export default {
           console.log(res)
         })
     },
-    async register () {
-      if (this.signupPass === this.signupPassCon) {
-        document.getElementById('sendesugg').disabled = true
-        document.getElementById('sendesugg').style.backgroundColor = '#F0998B'
-        let allAreFilled = true /* check if all required fields are entered */
-        document.getElementById('suggestions').querySelectorAll('[required]').forEach(function (i) {
-          if (!allAreFilled) return
-          if (!i.value) allAreFilled = false
+    async login () {
+      document.getElementById('sendesugg').disabled = true
+      document.getElementById('sendesugg').style.backgroundColor = '#F0998B'
+      let allAreFilled = true /* check if all required fields are entered */
+      document.getElementById('suggestions').querySelectorAll('[required]').forEach(function (i) {
+        if (!allAreFilled) return
+        if (!i.value) allAreFilled = false
+      })
+      if (allAreFilled) {
+        const axios = require('axios')
+        axios.post('https://kabelodatabase.herokuapp.com/login', {
+          email: this.signemail,
+          password: this.signupPass
         })
-        if (allAreFilled) {
-          const axios = require('axios')
-          axios.post('https://kabelodatabase.herokuapp.com/register', {
-            name: this.signname,
-            surname: this.signsurname,
-            email: this.signemail,
-            password: this.signupPass
+          .then((response) => {
+            console.log(response)
+            alert(response.data)
+          }, (error) => {
+            console.log(error)
           })
-            .then((response) => {
-              console.log(response)
-              alert(response.data)
-            }, (error) => {
-              console.log(error)
-            })
-        } else {
-          alert('fill up everything')
-        }
       } else {
-        alert('Passwords are not the same')
+        alert('fill up everything')
       }
+
       document.getElementById('sendesugg').disabled = false
       document.getElementById('sendesugg').style.backgroundColor = '#31F300'
     },

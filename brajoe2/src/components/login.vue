@@ -59,7 +59,7 @@
                     <!--<label for="conpassword">Confirm Password</label>
                     <input type="password" v-model= "signupPassCon" id="passcon" name="passcon" required oninvalid="this.setCustomValidity('Passwords don't correspond')" oninput="this.setCustomValidity('')"> -->
 
-                    <input id="sendesugg" type="button" @click="login"  class="send-message-cta" value="Sign Up" >
+                    <input id="sendesugg" type="button" @click="login"  class="send-message-cta" value="Login" >
                   </div>
                 </form>
             </div>

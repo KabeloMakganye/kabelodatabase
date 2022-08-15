@@ -27,7 +27,7 @@
 
                 <ul class="secondary-nav">
                     <li><a href="#">Contact</a></li>
-                    <li class="go-premium-cta"><a href="#">Log in</a></li>
+                    <li class="go-premium-cta"><a href="https://brajoecarwash.co.za/#/login">Log in</a></li>
                    <!-- <li class="go-premium-cta"><a href="#">Sign up</a></li> -->
                 </ul>
             </nav>

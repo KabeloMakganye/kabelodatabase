@@ -32,21 +32,21 @@
         </div>
     </div>
 
-    <section class="hero">
+    <section class="heros">
         <div class="container">
             <div class="left-col">
                <!-- <p class="subhead">It's Nitty &amp; Gritty</p> -->
                <!-- <h1>Limited OFFER </h1> -->
                 <blockquote>{{username}}</blockquote>
                <!-- <p style="font-size:50px">&#128295;&#128296;&#128297;</p> -->
-               <!-- <div class="hero-cta">
+               <!-- <div class="heros-cta">
                     <a href="#" class="primary-cta">Try for free</a>
                     <a href="#" class="watch-video-cta">
                         <img src="../assets/watch.svg" alt="Watch a video">Watch a video
                     </a>
                 </div> -->
             </div>
-           <!-- <img src="../assets/108487139-window-wash-1440.jpg" class="hero-img" alt="Illustration">-->
+           <!-- <img src="../assets/108487139-window-wash-1440.jpg" class="heros-img" alt="Illustration">-->
         </div>
     </section>
 
@@ -111,7 +111,7 @@ export default {
       document.getElementById('blur').style.width = '100%'
     },
     async counts () {
-      await fetch(`https://kabelodatabase.herokuapp.com/fn_add_load/brajoe`)
+      await fetch(`https://kabelodatabase.heroskuapp.com/fn_add_load/brajoe`)
     }
   },
   mounted () {
@@ -122,7 +122,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style >
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 :root {
   --primary-color: #31F300;
@@ -187,7 +187,7 @@ section {
   padding: 5em 2em;
 }
 
-.hero {
+.heros {
   text-align: center;
       /* background:url('../assets/108487139-window-wash-1440.jpg'); */
       background-image-opacity: 0.2;
@@ -226,7 +226,7 @@ section {
   margin-right: .5em;
 }
 
-.hero-img {
+.heros-img {
   width: 70%;
   margin-top: 3em;
 }
@@ -429,7 +429,7 @@ nav li a:hover {
   section {
     padding: 10em 4em;
   }
-  .hero .container {
+  .heros .container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -438,20 +438,20 @@ nav li a:hover {
             justify-content: space-between;
     text-align: left;
   }
-  .hero .container .left-col {
+  .heros .container .left-col {
     margin: 3em 3em 0 5em;
     background: rgba(255, 255, 255, 0.05);
      backdrop-filter: blur(8px);
   }
-  .hero .container .left-col h1 {
+  .heros .container .left-col h1 {
     font-size: 3em;
     width: 90%;
   }
-  .hero-img {
+  .heros-img {
     width: 30%;
     margin-right: 8em;
   }
-  .hero-cta {
+  .heros-cta {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -530,7 +530,7 @@ nav li a:hover {
 }
 
 @media only screen and (max-width: 1450px) {
-  .hero .container .left-col {
+  .heros .container .left-col {
     border: 15px;
     margin: 0em 0em 0 0em;
     background: rgba(255, 255, 255, 0.05);

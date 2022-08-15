@@ -237,11 +237,11 @@ app.post('/login',(req,res)=> {
     datas(req.body.password)])
     .then(rows => {
         if (rows[0].fn_add_login >= 1) {
-            res.send("1") //login sucess
+            res.send("win") //login sucess
         } else if (rows[0].fn_add_login == -2){
-            res.send("-2") // wrong password
+            res.send("wrong") // wrong password
         } else {
-            res.send("0") // wrong everything
+            res.send("invalid") // wrong everything
  
         }
     })

@@ -89,7 +89,8 @@ export default {
       signemail: '',
       signupPass: '',
       signupPassCon: '',
-      pic: null
+      pic: null,
+      nextpage: ''
     }
   },
   mounted () {
@@ -136,20 +137,24 @@ export default {
       })
       if (allAreFilled) {
         const axios = require('axios')
-        axios.post('http://localhost:3000/login', {
+        axios.post('https://kabelodatabase.herokuapp.com/login', {
           email: this.signemail,
           password: this.signupPass
         })
           .then((response) => {
             console.log(response)
             alert(response.data)
+            this.nextpage = response.data
+            alert(this.nextpage )
           }, (error) => {
             console.log(error)
           })
       } else {
         alert('fill up everything')
       }
-
+      if (this.nextpage === 1) {
+        alert('welcome')
+      }
       document.getElementById('sendesugg').disabled = false
       document.getElementById('sendesugg').style.backgroundColor = '#31F300'
     },

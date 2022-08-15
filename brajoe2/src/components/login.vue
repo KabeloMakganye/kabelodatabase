@@ -136,7 +136,7 @@ export default {
       })
       if (allAreFilled) {
         const axios = require('axios')
-        axios.post('https://kabelodatabase.herokuapp.com/login', {
+        axios.post('http://localhost:3000/login', {
           email: this.signemail,
           password: this.signupPass
         })

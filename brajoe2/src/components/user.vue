@@ -1,6 +1,6 @@
-<template @resize="removemenu">
-  <div class="hello"  @resize="removemenu">
-  <div @click="removemenu" class="blur" id="blur"></div>
+<template @resize="removemenus">
+  <div class="hello"  @resize="removemenus">
+  <div @click="removemenus" class="blur" id="blur"></div>
   <!-- <div @click="removemenu" class="blur2" id="blur2"></div>
 
   <div class="price">
@@ -14,21 +14,19 @@
   </div> -->
     <div class="navbar">
         <div class="container">
-            <a class="logo" href="#">BRA JOE<span> CarWash</span></a>
-
-            <img @click="addmenu"  class="mobile-menu" src="../assets/menu.svg" alt="Open Navigation">
+        <a class="logo" href="https://brajoecarwash.co.za/#/">BRA JOE<span> CarWash</span></a>
+            <img @click="addmenus"  class="mobile-menu" src="../assets/menu.svg" alt="Open Navigation">
             <nav id="mysidebar">
-                <img @click="removemenu" id="mobile-exit" class="mobile-menu-exit" src="../assets/exit.svg" alt="Close Navigation">
+                <img @click="removemenus" id="mobile-exit" class="mobile-menu-exit" src="../assets/exit.svg" alt="Close Navigation">
                 <ul class="primary-nav">
-                    <li class="current"><a href="#">Home</a></li>
+                    <li class="current"><a href="https://brajoecarwash.co.za/#/">Home</a></li>
                     <li><a href="#">Features</a></li>
-                    <li><a href="#" @click="addprice">Pricing</a></li>
+
                 </ul>
 
                 <ul class="secondary-nav">
                     <li><a href="#">Contact</a></li>
-                    <li class="go-premium-cta"><a href="http://localhost:8080/#/login">Log in</a></li>
-                    <li class="go-premium-cta"><a href="https://brajoecarwash.co.za/#/signup">Sign up</a></li>
+                    <li class="go-premium-cta"><a href="https://brajoecarwash.co.za/#/">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -39,9 +37,7 @@
             <div class="left-col">
                <!-- <p class="subhead">It's Nitty &amp; Gritty</p> -->
                <!-- <h1>Limited OFFER </h1> -->
-                <h4></h4>
-                <blockquote>"First 10 Cutomers to sign up get 50% discount"</blockquote>
-                    <cite>- ON THEIR SECOND WASH AFTER sign up</cite>
+                <blockquote>{{username}}</blockquote>
                <!-- <p style="font-size:50px">&#128295;&#128296;&#128297;</p> -->
                <!-- <div class="hero-cta">
                     <a href="#" class="primary-cta">Try for free</a>
@@ -51,19 +47,6 @@
                 </div> -->
             </div>
            <!-- <img src="../assets/108487139-window-wash-1440.jpg" class="hero-img" alt="Illustration">-->
-        </div>
-    </section>
-
-    <section class="features-section">
-        <div class="container">
-            <ul class="features-list">
-                <li>Car Waxing</li>
-                <li>Vehicle interior vacuuming</li>
-                <li>Full Body Wash</li>
-                <li>Engine cleaning</li>
-            </ul>
-
-           <!-- <img src="../assets/holding-phone.jpg" alt="Man holding phone"> -->
         </div>
     </section>
 
@@ -91,35 +74,8 @@
             </ul> -->
         </div>
     </section>
-
-    <section class="contact-section">
-        <div class="container">
-            <div class="contact-left">
-                <h2>Suggestion</h2>
-
-                <form onsubmit="return false">
-                  <div id="suggestions" class="suggestions">
-                    <label for="name">Name</label>
-                    <input type="text" v-model= "sugname" id="name" name="name" required oninvalid="this.setCustomValidity('Enter Name')" oninput="this.setCustomValidity('')">
-
-                    <!-- <label for="email">Email</label>
-                    <input type="email" v-model= "sugemail" id="email" name="email" required oninvalid="this.setCustomValidity('Enter Valid Email')" oninput="this.setCustomValidity('')">
--->
-                    <label for="message">Message</label>
-                    <textarea style="resize: none;" name="message" v-model= "sugmessage" id="message" cols="30" rows="10" required oninvalid="this.setCustomValidity('Enter Suggestion message')" oninput="this.setCustomValidity('')"></textarea>
-
-                    <input id="sendesugg" type="button" @click="sendemail" class="send-message-cta" value="Send message">
-                  </div>
-                </form>
-            </div>
-            <div class="contact-right">
-<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d706.4003803323423!2d28.099735019504372!3d-25.579115927241748!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x1824186fdf08ed66!2sBrajoes%20car%20wash!5e1!3m2!1sen!2sza!4v1655380638616!5m2!1sen!2sza" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
-
-        </div>
-    </section>
-            <div class="foots">
-    <app-footer/>
+        <div class="feet">
+    <h5 style="text-align:center">Copyright © 2022 All Rights Reserved. Designed by <a href="">Hms devs</a> </h5>
     </div>
   </div>
 </template>
@@ -127,8 +83,9 @@
 <script>
 import foot from '../components/foot.vue'
 export default {
+  props: ['username'],
   components: { 'app-footer': foot },
-  name: 'HelloWorld',
+  name: 'login',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -145,95 +102,21 @@ export default {
     window.removeEventListener('resize', this.removemenu)
   }, */
   methods: {
-    addprice () {
-      document.querySelector('nav').classList.add('menu-btn')
-      document.getElementById('blur2').style.width = '100%'
-    },
-    addmenu () {
-      document.querySelector('nav').classList.add('menu-btn')
-      document.getElementById('blur').style.width = '100%'
-    },
-    removemenu () {
+    removemenus () {
       document.getElementById('blur').style.width = '0%'
       document.querySelector('nav').classList.remove('menu-btn')
     },
-    async upload () {
-      await fetch(`https://kabelodatabase.herokuapp.com/set_pic/${this.$refs.myFiles.files}`)
-      console.log(this.$refs.myFiles.files)
+    addmenus () {
+      document.querySelector('nav').classList.add('menu-btn')
+      document.getElementById('blur').style.width = '100%'
     },
-    async register () {
-      const axios = require('axios')
-      axios.post('https://kabelodatabase.herokuapp.com/register', {
-        todo: 'Buy the milk'
-      })
-        .then((response) => {
-          console.log(response)
-          alert(response.data)
-        }, (error) => {
-          console.log(error)
-        })
-    },
-    async sendemail () {
-      document.getElementById('sendesugg').disabled = true
-      document.getElementById('sendesugg').style.backgroundColor = '#F0998B'
-      let allAreFilled = true /* check if all required fields are entered */
-      document.getElementById('suggestions').querySelectorAll('[required]').forEach(function (i) {
-        if (!allAreFilled) return
-        if (!i.value) allAreFilled = false
-      })
-      if (allAreFilled) {
-        const axios = require('axios')
-        await axios.post('https://kabelodatabase.herokuapp.com/sendemail', {
-          sugestionname: this.sugname,
-          sugestionmessage: this.sugmessage,
-          sendereamil: 'joesdrivethrough@gmail.com'
-        })
-          .then((response) => {
-            this.sugname = ''
-            this.sugmessage = ''
-            // console.log(response)
-            alert(response.data)
-          }, (error) => {
-            console.log(error)
-          })
-      } else {
-        alert('Enter all required fields')
-      }
-      document.getElementById('sendesugg').disabled = false
-      document.getElementById('sendesugg').style.backgroundColor = '#31F300'
-      /* await fetch(`https://kabelodatabase.herokuapp.com/sendemail/joesdrivethrough@gmail.com/` + this.sugname + ' ' + this.sugmessage)
-          .then(response => response.json())
-          .then(results => (this.resultsFetched_3 = results))
-        alert(this.resultsFetched_3)
-      } */
-    },
-    async count () {
+    async counts () {
       await fetch(`https://kabelodatabase.herokuapp.com/fn_add_load/brajoe`)
     }
   },
   mounted () {
-    window.addEventListener('resize', this.removemenu)
+    window.addEventListener('resize', this.removemenus)
     // create a cookie that will help us coont number of page visits.
-    let coo = ''
-    let decodedCookie = decodeURIComponent(document.cookie)
-    let ca = decodedCookie.split(';')
-    for (let i = 0; i < ca.length; i++) {
-      let c = ca[i]
-      while (c.charAt(0) === ' ') {
-        c = c.substring(1)
-      }
-      if (c.indexOf('logsbrajoe=') === 0) {
-        coo = c.substring('logsbrajoe=', c.length)
-      }
-    }
-    if (coo.length <= 1) {
-      const d = new Date()
-      d.setTime(d.getTime() + (1 * 24 * 60 * 60 * 1000))
-      d.setUTCHours(0, 0, 0)
-      let expires = 'expires=' + d.toUTCString()
-      document.cookie = 'logsbrajoe' + '=' + 'brajoecarwash' + ';' + expires + ';path=/'
-      this.count()
-    }
   }
 }
 </script>
@@ -306,7 +189,7 @@ section {
 
 .hero {
   text-align: center;
-      background:url('../assets/108487139-window-wash-1440.jpg');
+      /* background:url('../assets/108487139-window-wash-1440.jpg'); */
       background-image-opacity: 0.2;
 }
 

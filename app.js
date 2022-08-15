@@ -143,6 +143,9 @@ function datas(ab) { // ab is password and cd is user name
     //}
     return ab;
 }
+app.get('/data/:aa',(req,res)=> {
+    res.send(datas(req.params.aa))
+})
 app.post('/register',(req,res)=> {
     // res.send("Sign up coming soon")
    db.func("fn_add_new_user",[

@@ -1,5 +1,9 @@
 <template @resize="removemenu">
   <div class="hello"  >
+     <div v-if="nextpage ==='win'">
+   <log-in :username="signemail" />
+ </div>
+ <div v-else>
   <div @click="removemenu" class="blur" id="blur"></div>
   <!-- <div @click="removemenu" class="blur2" id="blur2"></div>
 
@@ -27,13 +31,11 @@
 
                 <ul class="secondary-nav">
                     <li><a href="#">Contact</a></li>
-                    <li class="go-premium-cta"><a href="#">Log in</a></li>
                    <!-- <li class="go-premium-cta"><a href="#">Sign up</a></li> -->
                 </ul>
             </nav>
         </div>
     </div>
-
     <section class="hero2">
         <div class="container">
             <div class="left-col">
@@ -67,12 +69,16 @@
     <div class="feet">
     <h5 style="text-align:center">Copyright © 2022 All Rights Reserved. Designed by <a href="">Hms devs</a> </h5>
     </div>
+    </div>
+
   </div>
 </template>
 
 <script>
+import logi from '../components/user.vue'
 import axios from 'axios'
 export default {
+  components: { 'log-in': logi },
   name: 'HelloWorld',
   data () {
     return {
@@ -137,23 +143,28 @@ export default {
       })
       if (allAreFilled) {
         const axios = require('axios')
-        axios.post('https://kabelodatabase.herokuapp.com/login', {
+        await axios.post('https://kabelodatabase.herokuapp.com/login', {
           email: this.signemail,
           password: this.signupPass
         })
           .then((response) => {
-            console.log(response)
-            alert(response.data)
+            /* console.log(response)
+            alert(response.data) */
             this.nextpage = response.data
-            alert(this.nextpage )
+            /* alert(this.nextpage)
+            console.log(this.nextpage) */
           }, (error) => {
             console.log(error)
           })
       } else {
         alert('fill up everything')
       }
-      if (this.nextpage === 1) {
+      if (this.nextpage === 'win') {
         alert('welcome')
+      } else if (this.nextpage === 'wrong') {
+        alert('wrong Password')
+      } else {
+        alert('invalid user')
       }
       document.getElementById('sendesugg').disabled = false
       document.getElementById('sendesugg').style.backgroundColor = '#31F300'

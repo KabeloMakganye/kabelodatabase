@@ -253,7 +253,17 @@ app.post('/login',(req,res)=> {
     })
 })
 //end
-
+//get user
+app.get('/get_user/:email',(req,res)=> {
+    db.func("get_user",req.params.email)
+     .then(rows => {;
+         res.json(rows);
+     })
+     .catch(error => {
+         console.log(error);
+     })
+})
+//
 app.post('/image',(req,res)=> {
     console.log("hi"+req.body.todo);
     db.func("set_pic",req.body.todo)

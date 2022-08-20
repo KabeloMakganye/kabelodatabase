@@ -20,7 +20,7 @@
                 <img @click="removemenu" id="mobile-exit" class="mobile-menu-exit" src="../assets/exit.svg" alt="Close Navigation">
                 <ul class="primary-nav">
                     <li class="current"><a href="https://brajoecarwash.co.za/#/">Home</a></li>
-                    <li><a @click="toaccount()">Account</a></li>
+                    <li><a @click="todash()">Dashboard</a></li>
 
                 </ul>
 
@@ -36,8 +36,8 @@
         <div class="container">
             <div class="left-col">
                <!-- <p class="subhead">It's Nitty &amp; Gritty</p> -->
-               <!-- <h1>Limited OFFER </h1> -->
-                <blockquote>{{signname}}</blockquote>
+               <h1>Account </h1>
+                <blockquote>{{username}}</blockquote>
                 <blockquote>{{usersurname}}</blockquote>
                <!-- <p style="font-size:50px">&#128295;&#128296;&#128297;</p> -->
                <!-- <div class="heros-cta">
@@ -82,11 +82,11 @@
 </template>
 
 <script>
-import acc from '../components/account.vue'
+import logi from '../components/user.vue'
 export default {
-  components: { 'acc-nt': acc },
+  components: { 'log-in': logi },
   props: ['username', 'usersurname'],
-  name: 'login',
+  name: 'account',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -96,11 +96,10 @@ export default {
       sugmessage: '',
       resultsFetched_3: '',
       atload: 0,
-      nextpage: '',
 
       signname: '',
       signsurname: '',
-      signemail: ''
+      nextpages: ''
     }
   },
 
@@ -108,27 +107,12 @@ export default {
     window.removeEventListener('resize', this.removemenu)
   },
   methods: {
-    getCookie (cname) {
-      let name = cname + '='
-      let decodedCookie = decodeURIComponent(document.cookie)
-      let ca = decodedCookie.split(';')
-      for (let i = 0; i < ca.length; i++) {
-        let c = ca[i]
-        while (c.charAt(0) === ' ') {
-          c = c.substring(1)
-        }
-        if (c.indexOf(name) === 0) {
-          return c.substring(name.length, c.length)
-        }
-      }
-      return 'none'
-    },
-    toaccount () {
+    todash () {
       this.signname = this.username
       this.signsurname = this.usersurname
-      this.nextpage = 'win'
+      this.nextpages = 'win'
     },
-    removemenu () {
+    removemenus () {
       document.getElementById('blur').style.width = '0%'
       document.querySelector('nav').classList.remove('menu-btn')
     },
@@ -142,21 +126,13 @@ export default {
   },
   mounted () {
     window.addEventListener('resize', this.removemenu)
-    if (this.getCookie('userbrajoe') === 'none') {
-      window.location.href = 'https://brajoecarwash.co.za/#/login' // 'http://localhost:8080/#/login'
-    } else {
-      this.signname = this.getCookie('userbrajoe')
-      this.signsurname = this.getCookie('surnamebrajoe')
-      this.signemail = this.getCookie('emailbrajoe')
-    }
-    // alert('welcome')
     // create a cookie that will help us coont number of page visits.
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 :root {
   --primary-color: #31F300;

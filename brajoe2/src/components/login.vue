@@ -1,9 +1,5 @@
 <template @resize="removemenu">
   <div class="hello"  >
-     <div v-if="nextpage ==='win'">
-   <log-in :username="signemail" />
- </div>
- <div v-else>
   <div @click="removemenu" class="blur" id="blur"></div>
   <!-- <div @click="removemenu" class="blur2" id="blur2"></div>
 
@@ -68,7 +64,6 @@
     </section>
     <div class="feet">
     <h5 style="text-align:center">Copyright © 2022 All Rights Reserved. Designed by <a href="">Hms devs</a> </h5>
-    </div>
     </div>
 
   </div>
@@ -160,7 +155,36 @@ export default {
         alert('fill up everything')
       }
       if (this.nextpage === 'win') {
-        alert('welcome')
+        await fetch(`https://kabelodatabase.herokuapp.com/get_user/${this.signemail}`)
+          .then(response => response.json())
+          .then(results => (this.resultsFetched_3 = results))
+        this.signname = this.resultsFetched_3[0].name_
+        this.signsurname = this.resultsFetched_3[0].surname_
+        // come back here put all loged in data on cookie
+        /* let coo = ''
+        let decodedCookie = decodeURIComponent(document.cookie)
+        let ca = decodedCookie.split(';')
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i]
+          while (c.charAt(0) === ' ') {
+            c = c.substring(1)
+          }
+          if (c.indexOf('userbrajoe=') === 0) {
+            coo = c.substring('=', c.length)
+            alert(coo)
+          }
+        }
+        if (coo.length <= 1) { */
+        const d = new Date()
+        d.setTime(d.getTime() + (1 * 1 * 1 * 1 * 60000)) // session will expire after a minute
+        // d.setUTCHours(0, 0, 0)
+        let expires = 'expires=' + d.toUTCString()
+        document.cookie = 'userbrajoe' + '=' + this.signname + ';' + expires + ';path=/'
+        document.cookie = 'surnamebrajoe' + '=' + this.signsurname + ';' + expires + ';path=/'
+        document.cookie = 'emailbrajoe' + '=' + this.signemail + ';' + expires + ';path=/'
+        // add procedure that add to log when one login
+        // }
+        window.location.href = 'https://brajoecarwash.co.za/#/user' // 'http://localhost:8080/#/user'
       } else if (this.nextpage === 'wrong') {
         alert('wrong Password')
       } else {

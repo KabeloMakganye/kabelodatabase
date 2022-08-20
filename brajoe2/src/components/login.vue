@@ -176,7 +176,7 @@ export default {
         }
         if (coo.length <= 1) { */
         const d = new Date()
-        d.setTime(d.getTime() + (1 * 1 * 1 * 1 * 60000)) // session will expire after a minute
+        d.setTime(d.getTime() + (1 * 1 * 1 * 1 * 180000)) // session will expire after a minute
         // d.setUTCHours(0, 0, 0)
         let expires = 'expires=' + d.toUTCString()
         document.cookie = 'userbrajoe' + '=' + this.signname + ';' + expires + ';path=/'
@@ -184,6 +184,7 @@ export default {
         document.cookie = 'emailbrajoe' + '=' + this.signemail + ';' + expires + ';path=/'
         // add procedure that add to log when one login
         // }
+        // window.location.href = 'http://localhost:8080/#/user'
         window.location.href = 'https://brajoecarwash.co.za/#/user' // 'http://localhost:8080/#/user'
       } else if (this.nextpage === 'wrong') {
         alert('wrong Password')

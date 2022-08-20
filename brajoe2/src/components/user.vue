@@ -26,7 +26,7 @@
 
                 <ul class="secondary-nav">
                     <li><a href="#">Contact</a></li>
-                    <li class="go-premium-cta"><a href="https://brajoecarwash.co.za/#/">Logout</a></li>
+                    <li class="go-premium-cta"><a @click="logout">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -38,7 +38,7 @@
                <!-- <p class="subhead">It's Nitty &amp; Gritty</p> -->
                <!-- <h1>Limited OFFER </h1> -->
                 <blockquote>{{signname}}</blockquote>
-                <blockquote>{{usersurname}}</blockquote>
+                <blockquote>{{signsurname}}</blockquote>
                <!-- <p style="font-size:50px">&#128295;&#128296;&#128297;</p> -->
                <!-- <div class="heros-cta">
                     <a href="#" class="primary-cta">Try for free</a>
@@ -108,6 +108,34 @@ export default {
     window.removeEventListener('resize', this.removemenu)
   },
   methods: {
+    checksession () {
+      if (this.getCookie('userbrajoe') === 'none') {
+        alert('Session expired, login again')
+        window.location.replace('https://brajoecarwash.co.za/#/login')
+        // window.location.replace('http://localhost:8080/#/login')
+      } else {
+        const d = new Date()
+        d.setTime(d.getTime() + (1 * 1 * 1 * 1 * 180000)) // session will expire after a minute
+        // d.setUTCHours(0, 0, 0)
+        let expires = 'expires=' + d.toUTCString()
+        document.cookie = 'userbrajoe' + '=' + this.signname + ';' + expires + ';path=/'
+        document.cookie = 'surnamebrajoe' + '=' + this.signsurname + ';' + expires + ';path=/'
+        document.cookie = 'emailbrajoe' + '=' + this.signemail + ';' + expires + ';path=/'
+      }
+    },
+    logout () {
+      const d = new Date()
+      d.setTime(d.getTime() - (1 * 1 * 1 * 1 * 180000)) // session will expire after a minute
+      // d.setUTCHours(0, 0, 0)
+      let expires = 'expires=' + d.toUTCString()
+      document.cookie = 'userbrajoe' + '=' + this.signname + ';' + expires + ';path=/'
+      document.cookie = 'surnamebrajoe' + '=' + this.signsurname + ';' + expires + ';path=/'
+      document.cookie = 'emailbrajoe' + '=' + this.signemail + ';' + expires + ';path=/'
+      // add procedure that add to log when one login
+      // }
+      // window.location.replace('http://localhost:8080/#/login')
+      window.location.replace('https://brajoecarwash.co.za/#/login')
+    },
     getCookie (cname) {
       let name = cname + '='
       let decodedCookie = decodeURIComponent(document.cookie)
@@ -124,9 +152,9 @@ export default {
       return 'none'
     },
     toaccount () {
-      this.signname = this.username
-      this.signsurname = this.usersurname
-      this.nextpage = 'win'
+      this.checksession() // if cookies expired it logout
+      // window.location.href = 'http://localhost:8080/#/account'
+      window.location.replace('https://brajoecarwash.co.za/#/account')
     },
     removemenu () {
       document.getElementById('blur').style.width = '0%'
@@ -143,7 +171,9 @@ export default {
   mounted () {
     window.addEventListener('resize', this.removemenu)
     if (this.getCookie('userbrajoe') === 'none') {
-      window.location.href = 'https://brajoecarwash.co.za/#/login' // 'http://localhost:8080/#/login'
+      alert('Session expired, login again')
+      // window.location.replace('http://localhost:8080/#/login')
+      window.location.replace('https://brajoecarwash.co.za/#/login') // 'http://localhost:8080/#/login'
     } else {
       this.signname = this.getCookie('userbrajoe')
       this.signsurname = this.getCookie('surnamebrajoe')

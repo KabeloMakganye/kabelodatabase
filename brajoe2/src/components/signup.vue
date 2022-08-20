@@ -48,6 +48,9 @@
                     <label for="surname">Surname</label>
                     <input type="text" v-model= "signsurname" id="surname" name="surname" required oninvalid="this.setCustomValidity('Enter Surname')" oninput="this.setCustomValidity('')">
 
+                    <label for="number">Cell Number</label>
+                    <input type="text" v-model= "signnumber" id="number" name="number" required oninvalid="this.setCustomValidity('Enter Surname')" oninput="this.setCustomValidity('We will contact you if you forget something')">
+
                     <label for="email">Email</label>
                     <input type="email" v-model= "signemail" id="email" name="email" required oninvalid="this.setCustomValidity('Enter Valid Email')" oninput="this.setCustomValidity('')">
 
@@ -89,6 +92,7 @@ export default {
       signemail: '',
       signupPass: '',
       signupPassCon: '',
+      signnumber: '',
       pic: null
     }
   },
@@ -141,7 +145,8 @@ export default {
             name: this.signname,
             surname: this.signsurname,
             email: this.signemail,
-            password: this.signupPass
+            password: this.signupPass,
+            celnum: this.signnumber
           })
             .then((response) => {
               console.log(response)

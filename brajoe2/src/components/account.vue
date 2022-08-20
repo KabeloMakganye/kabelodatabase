@@ -19,14 +19,18 @@
             <nav id="mysidebar">
                 <img @click="removemenu" id="mobile-exit" class="mobile-menu-exit" src="../assets/exit.svg" alt="Close Navigation">
                 <ul class="primary-nav">
+                    <!-- <li><a class="logo"><span>{{signname}}</span></a></li>
                     <li class="current"><a href="https://brajoecarwash.co.za/#/">Home</a></li>
-                    <li><a @click="todash()">Dashboard</a></li>
+                    <li><a @click="todash()">Dashboard</a></li> -->
 
                 </ul>
 
                 <ul class="secondary-nav">
+                    <li><a class="logo"><span>{{signname}}</span></a></li>
+                    <li class="current"><a href="https://brajoecarwash.co.za/#/">Home</a></li>
+                    <li><a @click="todash()">Dashboard</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li class="go-premium-cta"><a href="https://brajoecarwash.co.za/#/">Logout</a></li>
+                    <li class="go-premium-cta"><a @click="logout">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -37,8 +41,8 @@
             <div class="left-col">
                <!-- <p class="subhead">It's Nitty &amp; Gritty</p> -->
                <h1>Account </h1>
-                <blockquote>{{username}}</blockquote>
-                <blockquote>{{usersurname}}</blockquote>
+                <blockquote>{{signname}}</blockquote>
+                <blockquote>{{signsurname}}</blockquote>
                <!-- <p style="font-size:50px">&#128295;&#128296;&#128297;</p> -->
                <!-- <div class="heros-cta">
                     <a href="#" class="primary-cta">Try for free</a>
@@ -82,10 +86,7 @@
 </template>
 
 <script>
-import logi from '../components/user.vue'
 export default {
-  components: { 'log-in': logi },
-  props: ['username', 'usersurname'],
   name: 'account',
   data () {
     return {
@@ -107,12 +108,54 @@ export default {
     window.removeEventListener('resize', this.removemenu)
   },
   methods: {
-    todash () {
-      this.signname = this.username
-      this.signsurname = this.usersurname
-      this.nextpages = 'win'
+    checksession () {
+      if (this.getCookie('userbrajoe') === 'none') {
+        alert('Session expired, login again')
+        // window.location.replace('http://localhost:8080/#/login')
+        window.location.replace('https://brajoecarwash.co.za/#/login')
+      } else {
+        const d = new Date()
+        d.setTime(d.getTime() + (1 * 1 * 1 * 1 * 180000)) // session will expire after a minute
+        // d.setUTCHours(0, 0, 0)
+        let expires = 'expires=' + d.toUTCString()
+        document.cookie = 'userbrajoe' + '=' + this.signname + ';' + expires + ';path=/'
+        document.cookie = 'surnamebrajoe' + '=' + this.signsurname + ';' + expires + ';path=/'
+        document.cookie = 'emailbrajoe' + '=' + this.signemail + ';' + expires + ';path=/'
+      }
     },
-    removemenus () {
+    logout () {
+      const d = new Date()
+      d.setTime(d.getTime() - (1 * 1 * 1 * 1 * 180000)) // session will expire after a minute
+      // d.setUTCHours(0, 0, 0)
+      let expires = 'expires=' + d.toUTCString()
+      document.cookie = 'userbrajoe' + '=' + this.signname + ';' + expires + ';path=/'
+      document.cookie = 'surnamebrajoe' + '=' + this.signsurname + ';' + expires + ';path=/'
+      document.cookie = 'emailbrajoe' + '=' + this.signemail + ';' + expires + ';path=/'
+      // add procedure that add to log when one login
+      // }
+      // window.location.replace('http://localhost:8080/#/login')
+      window.location.replace('https://brajoecarwash.co.za/#/login')
+    },
+    getCookie (cname) {
+      let name = cname + '='
+      let decodedCookie = decodeURIComponent(document.cookie)
+      let ca = decodedCookie.split(';')
+      for (let i = 0; i < ca.length; i++) {
+        let c = ca[i]
+        while (c.charAt(0) === ' ') {
+          c = c.substring(1)
+        }
+        if (c.indexOf(name) === 0) {
+          return c.substring(name.length, c.length)
+        }
+      }
+      return 'none'
+    },
+    todash () {
+      this.checksession() // if cookies expired it logout
+      window.location.href = 'https://brajoecarwash.co.za/#/user'
+    },
+    removemenu () {
       document.getElementById('blur').style.width = '0%'
       document.querySelector('nav').classList.remove('menu-btn')
     },
@@ -126,13 +169,23 @@ export default {
   },
   mounted () {
     window.addEventListener('resize', this.removemenu)
+    if (this.getCookie('userbrajoe') === 'none') {
+      alert('Session expired, login again')
+      // window.location.replace('http://localhost:8080/#/login')
+      window.location.replace('https://brajoecarwash.co.za/#/login') // 'http://localhost:8080/#/login'
+    } else {
+      this.signname = this.getCookie('userbrajoe')
+      this.signsurname = this.getCookie('surnamebrajoe')
+      this.signemail = this.getCookie('emailbrajoe')
+    }
+    // alert('welcome')
     // create a cookie that will help us coont number of page visits.
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 :root {
   --primary-color: #31F300;

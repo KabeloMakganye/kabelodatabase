@@ -1,6 +1,5 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/hook.png"> -->
     <router-view/>
   </div>
 </template>

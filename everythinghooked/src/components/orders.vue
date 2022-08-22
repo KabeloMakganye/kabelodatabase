@@ -14,14 +14,14 @@
   </div> -->
     <div class="navbar">
         <div class="container">
-            <a class="logo" href="#"><img src="../assets/hook.png" width="60%" height="60%"></a>
+            <a class="logo" href="https://everythinghooked.web.app/#/"><img src="../assets/hook.png" width="60%" height="60%"></a>
 
             <img @click="addmenu"  class="mobile-menu" src="../assets/menu.svg" alt="Open Navigation">
             <nav id="mysidebar">
                 <img @click="removemenu" id="mobile-exit" class="mobile-menu-exit" src="../assets/exit.svg" alt="Close Navigation">
                 <ul class="primary-nav">
-                    <!-- <li class="current"><a href="#">Home</a></li>n-->
-                    <li><a href="https://everythinghooked.web.app/#/orders">Orders</a></li>
+                    <!-- <li class="current"><a href="#">Home</a></li> -->
+                    <li><a href="#" @click="toneworder">New order</a></li>
                     <li><a href="#" @click="addprice">Pricing</a></li>
                 </ul>
 
@@ -51,23 +51,47 @@
             </nav>
         </div>
     </div>
-    <section class="hero">
+    <section class="hero2">
         <div class="container">
             <div class="left-col">
                <!-- <p class="subhead">It's Nitty &amp; Gritty</p> -->
                <!-- <h1>Limited OFFER </h1> -->
-                <h4></h4>
-                <blockquote>"COMING SOON"</blockquote>
-                    <cite>- Noko</cite>
+                <table>
+  <tr>
+  <th>Client</th>
+  <th>Product</th>
+  <th>Date</th>
+  </tr>
+  <tr>
+  <td>Kabelo</td>
+  <td>Beanie</td>
+  <td>26/07/2022</td>
+  </tr>
+  <tr>
+  <td>Noko</td>
+  <td>Bikini</td>
+  <td>15/08/2022</td>
+  </tr>
+  <tr>
+  <td>Katlego</td>
+  <td>Jersy</td>
+  <td>17/08/2022</td>
+  </tr>
+  <tr>
+  <td>Lerato</td>
+  <td>Custom product</td>
+  <td>18/08/2022</td>
+  </tr>
+</table>
                <!-- <p style="font-size:50px">&#128295;&#128296;&#128297;</p> -->
-               <!-- <div class="hero-cta">
+               <!-- <div class="hero2-cta">
                     <a href="#" class="primary-cta">Try for free</a>
                     <a href="#" class="watch-video-cta">
                         <img src="../assets/watch.svg" alt="Watch a video">Watch a video
                     </a>
                 </div> -->
             </div>
-           <!-- <img src="../assets/108487139-window-wash-1440.jpg" class="hero-img" alt="Illustration">-->
+           <!-- <img src="../assets/108487139-window-wash-1440.jpg" class="hero2-img" alt="Illustration">-->
         </div>
     </section>
              <div class="foots">
@@ -97,6 +121,10 @@ export default {
     window.removeEventListener('resize', this.removemenu)
   }, */
   methods: {
+    toneworder () {
+      // this.checksession() // if cookies expired it logout
+      window.location.href = 'https://everythinghooked.web.app/#/neworder'
+    },
     addprice () {
       document.querySelector('nav').classList.add('menu-btn')
       document.getElementById('blur2').style.width = '100%'
@@ -110,12 +138,12 @@ export default {
       document.querySelector('nav').classList.remove('menu-btn')
     },
     async upload () {
-      await fetch(`https://kabelodatabase.herokuapp.com/set_pic/${this.$refs.myFiles.files}`)
+      await fetch(`https://kabelodatabase.hero2kuapp.com/set_pic/${this.$refs.myFiles.files}`)
       console.log(this.$refs.myFiles.files)
     },
     async register () {
       const axios = require('axios')
-      axios.post('https://kabelodatabase.herokuapp.com/register', {
+      axios.post('https://kabelodatabase.hero2kuapp.com/register', {
         todo: 'Buy the milk'
       })
         .then((response) => {
@@ -135,7 +163,7 @@ export default {
       })
       if (allAreFilled) {
         const axios = require('axios')
-        await axios.post('https://kabelodatabase.herokuapp.com/sendemail', {
+        await axios.post('https://kabelodatabase.hero2kuapp.com/sendemail', {
           sugestionname: this.sugname,
           sugestionmessage: this.sugmessage,
           sendereamil: 'joesdrivethrough@gmail.com'
@@ -153,14 +181,14 @@ export default {
       }
       document.getElementById('sendesugg').disabled = false
       document.getElementById('sendesugg').style.backgroundColor = '#31F300'
-      /* await fetch(`https://kabelodatabase.herokuapp.com/sendemail/joesdrivethrough@gmail.com/` + this.sugname + ' ' + this.sugmessage)
+      /* await fetch(`https://kabelodatabase.hero2kuapp.com/sendemail/joesdrivethrough@gmail.com/` + this.sugname + ' ' + this.sugmessage)
           .then(response => response.json())
           .then(results => (this.resultsFetched_3 = results))
         alert(this.resultsFetched_3)
       } */
     },
     async count () {
-      await fetch(`https://kabelodatabase.herokuapp.com/fn_add_load/everythinghooked`)
+      await fetch(`https://kabelodatabase.hero2kuapp.com/fn_add_load/everythinghooked`)
     }
   },
   mounted () {
@@ -260,11 +288,8 @@ section {
   padding: 5em 2em;
 }
 
-.hero {
+.hero2 {
   text-align: center;
-      background:url('../assets/hooked2.jpg');
-      background-size: contain;
-      background-image-opacity: 0.2;
 }
 
 .left-col .subhead {
@@ -300,7 +325,7 @@ section {
   margin-right: .5em;
 }
 
-.hero-img {
+.hero2-img {
   width: 70%;
   margin-top: 3em;
 }
@@ -503,7 +528,7 @@ nav li a:hover {
   section {
     padding: 10em 4em;
   }
-  .hero .container {
+  .hero2 .container {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -512,20 +537,20 @@ nav li a:hover {
             justify-content: space-between;
     text-align: left;
   }
-  .hero .container .left-col {
+  .hero2 .container .left-col {
     margin: 3em 3em 0 5em;
     background: rgba(255, 255, 255, 0.05);
-     backdrop-filter: blur(8px);
+     /* backdrop-filter: blur(8px); */
   }
-  .hero .container .left-col h1 {
+  .hero2 .container .left-col h1 {
     font-size: 3em;
     width: 90%;
   }
-  .hero-img {
+  .hero2-img {
     width: 30%;
     margin-right: 8em;
   }
-  .hero-cta {
+  .hero2-cta {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -604,11 +629,11 @@ nav li a:hover {
 }
 
 @media only screen and (max-width: 1450px) {
-  .hero .container .left-col {
+  .hero2 .container .left-col {
     border: 15px;
     margin: 0em 0em 0 0em;
-    background: rgba(255, 255, 255, 0.05);
-     backdrop-filter: blur(8px);
+    /* background: rgba(255, 255, 255, 0.05); */
+     /* backdrop-filter: blur(8px); */
   }
 }
   .blur {
@@ -641,6 +666,18 @@ nav li a:hover {
   position: fixed;
   left: 30%;
   top: 20%;
+}
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #D6EEEE;
 }
 /*# sourceMappingURL=main.css.map */
 </style>

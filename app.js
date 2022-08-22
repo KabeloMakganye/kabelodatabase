@@ -279,8 +279,8 @@ app.post('/image',(req,res)=> {
     })
 })
 //everything hooked
-app.get('/fn_add_new_order/:odate/:cname/:details/:progress',(req,res,next)=> {
-    db.func("everythinghooked.fn_add_new_order",[req.params.odate,req.params.cname,req.params.details,req.params.progress])
+app.get('/fn_add_new_order/:odate/:cname/:details/:contact',(req,res,next)=> {
+    db.func("everythinghooked.fn_add_new_order",[req.params.odate,req.params.cname,req.params.details,req.params.contact])
      .then(rows => {
          console.log(rows);
          res.json(rows);

@@ -59,18 +59,18 @@
                 <form id="registerid" onsubmit="return false">
                   <div id="suggestions" class="suggestions">
                     <label for="name">Client name</label>
-                    <input type="text" v-model= "signname" id="name" name="name" required oninvalid="this.setCustomValidity('Enter Name')" oninput="this.setCustomValidity('')">
+                    <input type="text" v-model= "clname" id="name" name="name" required oninvalid="this.setCustomValidity('Enter Name')" oninput="this.setCustomValidity('')">
 
                     <label for="surname">Product</label>
-                    <input type="text" v-model= "signsurname" id="surname" name="surname" required oninvalid="this.setCustomValidity('Enter Surname')" oninput="this.setCustomValidity('')">
+                    <input type="text" v-model= "product" id="surname" name="surname" required oninvalid="this.setCustomValidity('Enter Surname')" oninput="this.setCustomValidity('')">
 
                     <label for="number">Cell Number</label>
-                    <input type="text" v-model= "signnumber" id="number" name="number" required oninvalid="this.setCustomValidity('Enter Surname')" oninput="this.setCustomValidity('We will contact you if you forget something')">
+                    <input type="text" v-model= "clcontact" id="number" name="number" required oninvalid="this.setCustomValidity('Enter Surname')" oninput="this.setCustomValidity('We will contact you if you forget something')">
 
                     <label for="message">Order description</label>
-                    <textarea style="resize: none;" name="message" v-model= "sugmessage" id="message" cols="30" rows="10" required oninvalid="this.setCustomValidity('Enter Suggestion message')" oninput="this.setCustomValidity('')"></textarea>
+                    <textarea style="resize: none;" name="message" v-model= "scdescription" id="message" cols="30" rows="10" required oninvalid="this.setCustomValidity('Enter Suggestion message')" oninput="this.setCustomValidity('')"></textarea>
 
-                    <input id="sendesugg" type="button" @click="register"  class="send-message-cta" value="Send order" >
+                    <input id="sendesugg" type="button" @click="neworder"  class="send-message-cta" value="Send order" >
                   </div>
                 </form>
             </div>
@@ -96,7 +96,12 @@ export default {
       sugemail: '',
       sugmessage: '',
       resultsFetched_3: '',
-      atload: 0
+      atload: 0,
+      clname: '',
+      product: '',
+      clcontact: '',
+      scdescription: '',
+      resultsFetched_2: ''
     }
   },
 
@@ -104,6 +109,31 @@ export default {
     window.removeEventListener('resize', this.removemenu)
   }, */
   methods: {
+    async neworder () {
+      let allAreFilled = true /* check if all required fields are entered */
+      document.getElementById('suggestions').querySelectorAll('[required]').forEach(function (i) {
+        if (!allAreFilled) return
+        if (!i.value) allAreFilled = false
+      })
+      if (allAreFilled) {
+        const d = new Date()
+        d.setUTCHours(0, 0, 0)
+        await fetch(`https://kabelodatabase.herokuapp.com/fn_add_new_order/${d.toUTCString()}/${this.clname}/${this.scdescription}/${this.clcontact}/${this.product}`)
+          .then(response => response.json())
+          .then(results => (this.resultsFetched_2 = results))
+        if (this.resultsFetched_2[0].fn_add_new_order > 0) {
+          alert('order sent')
+        } else {
+          alert('Error 38')
+        }
+        this.clname = ''
+        this.scdescription = ''
+        this.clcontact = ''
+        this.product = ''
+      } else {
+        alert('Fill all fields')
+      }
+    },
     toorder () {
       // this.checksession() // if cookies expired it logout
       window.location.href = 'https://everythinghooked.web.app/#/orders'
@@ -121,12 +151,12 @@ export default {
       document.querySelector('nav').classList.remove('menu-btn')
     },
     async upload () {
-      await fetch(`https://kabelodatabase.hero2kuapp.com/set_pic/${this.$refs.myFiles.files}`)
+      await fetch(`https://kabelodatabase.herokuapp.com/set_pic/${this.$refs.myFiles.files}`)
       console.log(this.$refs.myFiles.files)
     },
     async register () {
       const axios = require('axios')
-      axios.post('https://kabelodatabase.hero2kuapp.com/register', {
+      axios.post('https://kabelodatabase.herokuapp.com/register', {
         todo: 'Buy the milk'
       })
         .then((response) => {
@@ -146,7 +176,7 @@ export default {
       })
       if (allAreFilled) {
         const axios = require('axios')
-        await axios.post('https://kabelodatabase.hero2kuapp.com/sendemail', {
+        await axios.post('https://kabelodatabase.herokuapp.com/sendemail', {
           sugestionname: this.sugname,
           sugestionmessage: this.sugmessage,
           sendereamil: 'joesdrivethrough@gmail.com'

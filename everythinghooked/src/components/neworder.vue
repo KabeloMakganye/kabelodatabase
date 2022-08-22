@@ -85,6 +85,7 @@
 
 <script>
 import foot from '../components/foot.vue'
+import swal from 'sweetalert'
 export default {
   components: { 'app-footer': foot },
   name: 'HelloWorld',
@@ -121,17 +122,20 @@ export default {
         await fetch(`https://kabelodatabase.herokuapp.com/fn_add_new_order/${d.toUTCString()}/${this.clname}/${this.scdescription}/${this.clcontact}/${this.product}`)
           .then(response => response.json())
           .then(results => (this.resultsFetched_2 = results))
-        if (this.resultsFetched_2[0].fn_add_new_order > 0) {
-          alert('order sent')
+        if (this.resultsFetched_2[0].fn_add_new_order > 1) {
+          // alert('hello', 'order sent')
+          swal('Order sent', '', 'success')
         } else {
-          alert('Error 38')
+          swal('Order already made', '', 'error')
+          // alert('hello', 'Order already made')
         }
         this.clname = ''
         this.scdescription = ''
         this.clcontact = ''
         this.product = ''
       } else {
-        alert('Fill all fields')
+        // alert('Fill all fields')
+        swal('Fill all fields', '', 'warning')
       }
     },
     toorder () {
@@ -697,5 +701,10 @@ th, td {
 tr:nth-child(even) {
   background-color: #D6EEEE;
 }
+
+.swal-overlay {
+  background-color: rgba(189, 34, 93, 0.45);
+}
+
 /*# sourceMappingURL=main.css.map */
 </style>

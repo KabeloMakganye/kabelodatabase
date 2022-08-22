@@ -289,6 +289,17 @@ app.get('/fn_add_new_order/:odate/:cname/:details/:contact/:product',(req,res,ne
          console.log(error);
      })
 })
+
+app.get('/get_all_orders',(req,res,next)=> {
+    db.func("everythinghooked.get_all_orders")
+     .then(rows => {
+         console.log(rows);
+         res.json(rows);
+     }) 
+     .catch(error => {
+         console.log(error);
+     })
+})
 //end of everythig hooked
 app.get('/bydate/:date',(req,res)=> {
     db.func("get_by_date",req.params.date)

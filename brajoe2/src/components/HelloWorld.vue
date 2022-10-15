@@ -40,8 +40,8 @@
                <!-- <p class="subhead">It's Nitty &amp; Gritty</p> -->
                <!-- <h1>Limited OFFER </h1> -->
                 <h4></h4>
-                <blockquote>"First 10 Cutomers to sign up get 50% discount"</blockquote>
-                    <cite>- ON THEIR SECOND WASH AFTER sign up</cite>
+                <blockquote>"Ain't too clean till it squeaks! We scrub you shine! Wax, rinse,go!"</blockquote>
+                    <cite>-BRA JOE</cite>
                <!-- <p style="font-size:50px">&#128295;&#128296;&#128297;</p> -->
                <!-- <div class="hero-cta">
                     <a href="#" class="primary-cta">Try for free</a>
@@ -67,9 +67,9 @@
         </div>
     </section>
 
-    <section class="testimonials-section">
+   <!-- <section class="testimonials-section">
         <div class="container">
-            <!--<ul>
+            <ul>
                 <li>
                     <img src="../assets/kb.jpg" alt="Person">
 
@@ -88,9 +88,9 @@
                     <blockquote>"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore"</blockquote>
                     <cite>- Jane Doe</cite>
                 </li>
-            </ul> -->
+            </ul> 
         </div>
-    </section>
+    </section> -->
 
     <section class="contact-section">
         <div class="container">

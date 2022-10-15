@@ -62,25 +62,10 @@
   <th>Product</th>
   <th>Date</th>
   </tr>
-  <tr>
-  <td>Kabelo</td>
-  <td>Beanie</td>
-  <td>26/07/2022</td>
-  </tr>
-  <tr>
-  <td>Noko</td>
-  <td>Bikini</td>
-  <td>15/08/2022</td>
-  </tr>
-  <tr>
-  <td>Katlego</td>
-  <td>Jersy</td>
-  <td>17/08/2022</td>
-  </tr>
-  <tr>
-  <td>Lerato</td>
-  <td>Custom product</td>
-  <td>18/08/2022</td>
+  <tr v-for="n in lim" :key= "n">
+  <td>{{Client[n-1]}}</td>
+  <td>{{Product[n-1]}}</td>
+  <td>{{Datess[n-1]}}</td>
   </tr>
 </table>
                <!-- <p style="font-size:50px">&#128295;&#128296;&#128297;</p> -->
@@ -102,6 +87,7 @@
 
 <script>
 import foot from '../components/foot.vue'
+// import swal from 'sweetalert'
 export default {
   components: { 'app-footer': foot },
   name: 'HelloWorld',
@@ -113,7 +99,12 @@ export default {
       sugemail: '',
       sugmessage: '',
       resultsFetched_3: '',
-      atload: 0
+      atload: 0,
+      resultsFetched_2: '',
+      lim: 0,
+      Client: [],
+      Product: [],
+      Datess: []
     }
   },
 
@@ -121,6 +112,17 @@ export default {
     window.removeEventListener('resize', this.removemenu)
   }, */
   methods: {
+    async loadorders () {
+      await fetch(`https://kabelodatabase.herokuapp.com/get_all_orders`)
+        .then(response => response.json())
+        .then(results => (this.resultsFetched_2 = results))
+      this.lim = this.resultsFetched_2.length
+      for (let x = 0; x < this.lim; x++) {
+        this.Client[x] = this.resultsFetched_2[x].clname_
+        this.Product[x] = this.resultsFetched_2[x].product_
+        this.Datess[x] = this.resultsFetched_2[x].orderdate_.substring(0, 10)
+      }
+    },
     toneworder () {
       // this.checksession() // if cookies expired it logout
       window.location.href = 'https://everythinghooked.web.app/#/neworder'
@@ -190,9 +192,35 @@ export default {
     async count () {
       await fetch(`https://kabelodatabase.hero2kuapp.com/fn_add_load/everythinghooked`)
     }
+    /* showLoading () {
+      swal({
+        title: 'Now loading',
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        timer: 2000,
+        onOpen: () => {
+          swal.showLoading()
+        }
+      }).then(
+        () => {},
+        (dismiss) => {
+          if (dismiss === 'timer') {
+            console.log('closed by timer!!!!')
+            swal({
+              title: 'Finished!',
+              type: 'success',
+              timer: 2000,
+              showConfirmButton: false
+            })
+          }
+        }
+      )
+    } */
   },
   mounted () {
+    // this.showLoading()
     window.addEventListener('resize', this.removemenu)
+    this.loadorders()
     // create a cookie that will help us coont number of page visits.
     let coo = ''
     let decodedCookie = decodeURIComponent(document.cookie)
@@ -674,6 +702,8 @@ table {
 th, td {
   text-align: left;
   padding: 8px;
+    font-size: 16px;
+  font-family: 'Indie Flower';
 }
 
 tr:nth-child(even) {

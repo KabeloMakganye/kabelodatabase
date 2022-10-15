@@ -135,6 +135,9 @@ export default {
         this.product = ''
       } else {
         // alert('Fill all fields')
+        if (window.navigator.vibrate) {
+          navigator.vibrate(500)
+        }
         swal('Fill all fields', '', 'warning')
       }
     },
@@ -257,7 +260,7 @@ body {
   margin: 0;
   /* font-family: 'Poppins'; */
   /* font-family: 'Indie Flower'; */
-  font-family: 'Patua One', cursive;
+  font-family: 'Patua One';
 }
 
 .navbar {

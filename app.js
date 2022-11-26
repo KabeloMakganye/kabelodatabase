@@ -151,6 +151,8 @@ app.post('/register',(req,res)=> {
    db.func("fn_add_new_user",[
     req.body.name,
     req.body.surname,
+    req.body.carname,
+    req.body.carreg,
     req.body.email,
     datas(req.body.password),
     req.body.celnum])

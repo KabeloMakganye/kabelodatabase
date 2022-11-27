@@ -201,7 +201,7 @@ app.post('/register',(req,res)=> {
                     if (error) {
                         if (error.message == 'No recipients defined' )
                         {
-                            res.send('Invalid email. please enter valid email. Ao.');
+                            res.send('Invalid email');
                         }
                         else {
                             res.send('Something went wrong. please try again.');

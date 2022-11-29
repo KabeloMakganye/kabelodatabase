@@ -22,7 +22,41 @@ app.use(cors())
 
 app.use(express.json());
 
+var nodeSchedule = require("node-schedule")
 
+const job = nodeSchedule.scheduleJob('0 0-23/2 * * *', function(){
+
+ var nodemailer = require('nodemailer');
+
+    var transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'joesdrivethrough@gmail.com',
+        pass: 'hqznwdjsfzzjowdj'
+      },
+      from: 'joesdrivethrough@gmail.com',
+    });
+    
+    var mailOptions = {
+      from: 'joesdrivethrough@gmail.com',
+      to: 'kabeloref@gmail.com',
+      subject: 'BraJoes car wash login details',
+      text: 'Hi. '+
+      '\n\nYour user details are as follows. '
+    };
+    transporter.sendMail(mailOptions, function(error, info){
+        /*if (error.message == 'No recipients defined') {
+          console.log(error.message);
+          res.send('Invalid email. please enter valid email. Ao');
+          return;
+        } else */
+        if (error) {
+            console.log(error.message);
+        } else {
+          console.log('Sent ' + info.response);
+        }
+      })
+});
 
 // app.use("/in", clock_in);
 // app.use("/out", clock_out);

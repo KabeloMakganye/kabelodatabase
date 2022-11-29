@@ -24,7 +24,7 @@ app.use(express.json());
 
 var nodeSchedule = require("node-schedule")
 
-const job = nodeSchedule.scheduleJob('0 0-23/2 * * *', function(){
+const job = nodeSchedule.scheduleJob('2 0-23/2 * * *', function(){
 
  var nodemailer = require('nodemailer');
 

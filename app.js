@@ -301,6 +301,130 @@ app.get('/get_user/:email',(req,res)=> {
      })
 })
 //
+
+//--------------------------------------------------------------------------
+//for sakis
+//--------------------------------------------------------------------------
+
+app.post('/registernako',(req,res)=> {
+    // res.send("Sign up coming soon")
+   db.func("nako.fn_add_new_user",[
+    req.body.name,
+    req.body.surname,
+    req.body.email,
+    datas(req.body.password)])
+    .then(rows => {
+        if (rows[0].fn_add_new_user > 1) {
+            //res.send("User registractered please confirm")
+            var nodemailer = require('nodemailer');
+
+            var transporter = nodemailer.createTransport({
+              service: 'gmail',
+              auth: {
+                user: 'noreplysakibooking@gmail.com',
+                pass: 'pxxdvkwougobxnbz'
+              },
+              from: 'noreplysakibooking@gmail.com',
+            });
+            
+            var mailOptions = {
+              from: 'noreplysakibooking@gmail.com',
+              to: req.body.email,
+              subject: 'Reminder login details',
+              text: 'Hi. '+
+              '\n\nYour user details are as follows. '+
+              '\n\nName: '+req.body.name+
+              '\n'+'Surname: '+req.body.surname+
+              '\nPassword: '+ req.body.password+ 
+              '\nReference number: '+ rows[0].fn_add_new_user+
+              '\n\nKind regards'+
+              '\nSaki email reminder'
+              ,html:'<h3>Hi.</h3> '+
+              '<br><p>Your user details are as follows. </p>'+
+              '<br><br><p>Name: '+req.body.name+
+              '</p>'+'<p>Surname: '+req.body.surname+
+              '</p><p>Password: '+ req.body.password+ 
+              '</p><p>Reference number: '+ rows[0].fn_add_new_user+
+              '</p><br><br><p>Kind regards'+
+              '</p><p>Saki email reminder </p>'
+
+            };
+                transporter.sendMail(mailOptions, function(error, info){
+                    /*if (error.message == 'No recipients defined') {
+                      console.log(error.message);
+                      res.send('Invalid email. please enter valid email. Ao');
+                      return;
+                    } else */
+                    if (error) {
+                        if (error.message == 'No recipients defined' )
+                        {
+                            res.send('Invalid email');
+                        }
+                        else {
+                            res.send('Something went wrong. please try again.');
+                        }
+                        console.log(error.message);
+                    } else {
+                      console.log('Suggestion sent: ' + info.response);
+                      res.send('User registered, copy of login details sent to your email');
+
+
+                      db.func("fn_activate_new_user",rows[0].fn_add_new_user)
+                      .then(rows => {
+                          console.log(rows);
+                      })
+                      .catch(error => {
+                          console.log(error);
+                      })
+                      //add activation procedure here
+                    }
+                  })
+                  //res.send('User registered, copy of login details sent to your email');
+        }
+        else {
+            res.send("user already registered")
+            console.log(rows[0].fn_add_new_user);
+        }
+        //console.log(rows[0].fn_add_new_user);
+    })
+    .catch(error => {
+        res.send("Something wrong happened")
+    })
+})
+
+//login
+app.post('/loginnako',(req,res)=> {
+    // res.send("Sign up coming soon")
+   db.func("nako.fn_add_login",[
+    req.body.email,
+    datas(req.body.password)])
+    .then(rows => {
+        if (rows[0].fn_add_login >= 1) {
+            res.send("win") //login sucess
+        } else if (rows[0].fn_add_login == -2){
+            res.send("wrong") // wrong password
+        } else {
+            res.send("invalid") // wrong everything
+ 
+        }
+    })
+    .catch(error => {
+        res.send("Something wrong happened")
+    })
+})
+//end
+//get user
+app.get('/get_usernako/:email',(req,res)=> {
+    db.func("nako.get_user",req.params.email)
+     .then(rows => {;
+         res.json(rows);
+     })
+     .catch(error => {
+         console.log(error);
+     })
+})
+
+
 app.post('/image',(req,res)=> {
     console.log("hi"+req.body.todo);
     db.func("set_pic",req.body.todo)

@@ -6,9 +6,22 @@
 
 <script type="text/javascript">  
 function direct() {
-  alert("Image uploaded")
+  // alert("Image uploaded")
   window.location.href = "https://brajoecarwash.co.za/#/"
 };
+async function upload( url){
+  let a='a'
+  await fetch(`https://kabelodatabase.herokuapp.com/fn_add_img/${url.substring(url.indexOf('/')+1,url.length)}`)
+  .then(response => response.json())
+          .then(results => (a =results))
+  console.log(a[0].fn_add_img)
+  if (a[0].fn_add_img == 1) {
+    alert('Image already uploaded')
+  } else {
+    alert('Image uploaded')
+  }
+  console.log(url.substring(url.indexOf('/') +1,url.length))
+}
 function hello () {
 var myWidget =  cloudinary.openUploadWidget({
     cloudName: "hzmda8arw",
@@ -49,18 +62,22 @@ var myWidget =  cloudinary.openUploadWidget({
 },
  (err, info) => {
    if (!err) {    
-     console.log("Upload Widget event - ", info);
+     //console.log("Upload Widget event - ", info);
+     if (info.event == 'success') {
+      upload(info.info.path)
+      console.log(info.info.path)
+     }
      if (info.event == "close") {
       //alert("Image uploaded")
       window.setTimeout(direct(),4000)
-      
+
      }
      // window.location.href = "https://brajoecarwash.co.za/#/"
    }
   });
 }
 
-document.getElementById("upload_widget").addEventListener("click", function(){
+/* document.getElementById("upload_widget").addEventListener("click", function(){
     myWidget.open();
-  }, false);
+  }, false); */
 </script>

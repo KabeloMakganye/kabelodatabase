@@ -125,8 +125,19 @@ app.use(function(req, res, next) {
   })
 
   app.use(express.static('public'));
-
+//--------------------------
   // image upload
+//---------------------
+get_all_pictures
+app.get('/get_all_pictures',(req,res)=> {
+    db.func("get_all_pictures",req.params.url)
+     .then(rows => {;
+         res.json(rows);
+     })
+     .catch(error => {
+         console.log(error);
+     })
+})
 app.get('/fn_add_img/:url',(req,res)=> {
     db.func("fn_add_img",req.params.url)
      .then(rows => {;

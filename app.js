@@ -130,7 +130,7 @@ app.use(function(req, res, next) {
 //---------------------
 get_all_pictures
 app.get('/get_all_pictures',(req,res)=> {
-    db.func("get_all_pictures",req.params.url)
+    db.func("get_all_pictures")
      .then(rows => {;
          res.json(rows);
      })

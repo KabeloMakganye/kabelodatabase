@@ -6,8 +6,8 @@
 
 <script type="text/javascript">  
 function direct() {
-  // alert("Image uploaded")
-  window.location.href = "https://brajoecarwash.co.za/#/"
+  //alert("Image uploaded")
+  //window.location.href = "https://brajoecarwash.co.za/#/"
 };
 async function upload( url){
   let a='a'
@@ -17,8 +17,10 @@ async function upload( url){
   console.log(a[0].fn_add_img)
   if (a[0].fn_add_img == 1) {
     alert('Image already uploaded')
+    window.location.href = "https://brajoecarwash.co.za/#/"
   } else {
     alert('Image uploaded')
+    window.location.href = "https://brajoecarwash.co.za/#/"
   }
   console.log(url.substring(url.indexOf('/') +1,url.length))
 }
@@ -32,7 +34,7 @@ var myWidget =  cloudinary.openUploadWidget({
     ],
     googleApiKey: "<image_search_google_api_key>",
     showAdvancedOptions: false,
-    cropping: true,
+    cropping: false,
     multiple: false,
     defaultSource: "local",
     styles: {
@@ -64,7 +66,7 @@ var myWidget =  cloudinary.openUploadWidget({
    if (!err) {    
      //console.log("Upload Widget event - ", info);
      if (info.event == 'success') {
-      upload(info.info.path)
+      window.setTimeout(upload(info.info.path),4000)
       console.log(info.info.path)
      }
      if (info.event == "close") {

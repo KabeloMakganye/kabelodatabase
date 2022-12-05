@@ -1,0 +1,66 @@
+<body onload="hello()">
+</body>
+
+
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+
+<script type="text/javascript">  
+function direct() {
+  alert("Image uploaded")
+  window.location.href = "https://brajoecarwash.co.za/#/"
+};
+function hello () {
+var myWidget =  cloudinary.openUploadWidget({
+    cloudName: "hzmda8arw",
+    uploadPreset: "kabelo1234",
+    sources: [
+        "local",
+        "camera"
+    ],
+    googleApiKey: "<image_search_google_api_key>",
+    showAdvancedOptions: false,
+    cropping: true,
+    multiple: false,
+    defaultSource: "local",
+    styles: {
+        palette: {
+            window: "#375D3C",
+            sourceBg: "#C1C8D4",
+            windowBorder: "#0202FF",
+            tabIcon: "#79F7FF",
+            inactiveTabIcon: "#8E9FBF",
+            menuIcons: "#008CFF",
+            link: "#72F1FF",
+            action: "#5333FF",
+            inProgress: "#00ffcc",
+            complete: "#33ff00",
+            error: "#cc3333",
+            textDark: "#000000",
+            textLight: "#ffffff"
+        },
+        fonts: {
+            default: null,
+            "'IBM Plex Sans', sans-serif": {
+                url: "https://fonts.googleapis.com/css?family=IBM+Plex+Sans",
+                active: true
+            }
+        }
+    }
+},
+ (err, info) => {
+   if (!err) {    
+     console.log("Upload Widget event - ", info);
+     if (info.event == "close") {
+      //alert("Image uploaded")
+      window.setTimeout(direct(),4000)
+      
+     }
+     // window.location.href = "https://brajoecarwash.co.za/#/"
+   }
+  });
+}
+
+document.getElementById("upload_widget").addEventListener("click", function(){
+    myWidget.open();
+  }, false);
+</script>

@@ -21,6 +21,49 @@ app.use(bodyParser.json())
 app.use(cors())
 
 app.use(express.json());
+/*var cloudinary = require('cloudinary')
+cloudinary.config({ 
+    cloud_name: 'hzmda8arw', 
+    api_key: '778186567992293', 
+    api_secret: 'B4ouY4OaO6pjPNo0kNxmAmd3hF0' 
+  });
+
+ cloudinary.v2.uploader.upload("108487139-window-wash-1440.jpg",
+  { public_id: "olympic_flag" }, 
+  function(error, result) {console.log(result); });*/
+
+app.post('/uploadpicture',(req,res)=> {
+    console.log(req.body.name)
+    var cloudinary2 = require('cloudinary')
+cloudinary2.config({ 
+    cloud_name: 'hzmda8arw', 
+    api_key: '778186567992293', 
+    api_secret: 'B4ouY4OaO6pjPNo0kNxmAmd3hF0' 
+  });
+    // res.send("Sign up coming soon")
+   /*db.func("fn_add_login",[
+    req.body.email,
+    datas(req.body.password)])
+    .then(rows => {
+        if (rows[0].fn_add_login >= 1) {
+            res.send("win") //login sucess
+        } else if (rows[0].fn_add_login == -2){
+            res.send("wrong") // wrong password
+        } else {
+            res.send("invalid") // wrong everything
+ 
+        }
+    })
+    .catch(error => {
+        res.send("Something wrong happened")
+    })*/
+    cloudinary2.v2.uploader.upload(req.body.name,
+  { public_id: "olymfdchpic_sdghsdgsg" }, 
+  function(error, result) {console.log(result); });
+  res.send("dome")
+  console.log(req.body.name)
+})
+
 
 var nodeSchedule = require("node-schedule")
 
@@ -83,7 +126,7 @@ app.use(function(req, res, next) {
 
   app.use(express.static('public'));
 app.get('/', function (req, res) {
-   res.sendFile( __dirname + "/" + "index.html" );
+   res.sendFile( __dirname + "/" + "a.html" );
 })
 
 var nodemailer = require('nodemailer');

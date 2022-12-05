@@ -128,7 +128,6 @@ app.use(function(req, res, next) {
 //--------------------------
   // image upload
 //---------------------
-get_all_pictures
 app.get('/get_all_pictures',(req,res)=> {
     db.func("get_all_pictures")
      .then(rows => {;

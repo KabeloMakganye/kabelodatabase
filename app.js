@@ -67,7 +67,7 @@ cloudinary2.config({
 
 var nodeSchedule = require("node-schedule")
 
-const job = nodeSchedule.scheduleJob('2 9 * * *', function(){
+const job = nodeSchedule.scheduleJob('10 7 * * *', function(){
 
  var nodemailer = require('nodemailer');
 

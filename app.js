@@ -69,6 +69,7 @@ var nodeSchedule = require("node-schedule")
 
 const job = nodeSchedule.scheduleJob('10 7 * * *', function(){
 
+    // Check if the is a booking before sending email
  var nodemailer = require('nodemailer');
 
     var transporter = nodemailer.createTransport({

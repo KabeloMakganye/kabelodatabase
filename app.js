@@ -371,6 +371,28 @@ app.get('/get_user/:email',(req,res)=> {
 //for sakis
 //--------------------------------------------------------------------------
 
+app.get('/fn_add_booking/:description/:date/:usid',(req,res,next)=> {
+    db.func("nako.fn_add_booking",[req.params.description,req.params.date,req.params.usid])
+     .then(rows => {
+         console.log(rows);
+         res.json(rows);
+     }) 
+     .catch(error => {
+         console.log(error);
+     })
+})
+
+app.get('/get_all_booking',(req,res,next)=> {
+    db.func("nako.get_all_booking")
+     .then(rows => {
+         console.log(rows);
+         res.json(rows);
+     }) 
+     .catch(error => {
+         console.log(error);
+     })
+})
+
 app.post('/registernako',(req,res)=> {
     // res.send("Sign up coming soon")
    db.func("nako.fn_add_new_user",[

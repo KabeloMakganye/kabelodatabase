@@ -67,25 +67,25 @@ cloudinary2.config({
 
 var nodeSchedule = require("node-schedule")
 
-const job = nodeSchedule.scheduleJob('2 0-23/2 * * *', function(){
+const job = nodeSchedule.scheduleJob('2 9 * * *', function(){
 
  var nodemailer = require('nodemailer');
 
     var transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'joesdrivethrough@gmail.com',
-        pass: 'hqznwdjsfzzjowdj'
+        user: 'noreplysakibooking@gmail.com',
+        pass: 'pxxdvkwougobxnbz'
       },
-      from: 'joesdrivethrough@gmail.com',
+      from: 'noreplysakibooking@gmail.com',
     });
     
     var mailOptions = {
-      from: 'joesdrivethrough@gmail.com',
+      from: 'noreplysakibooking@gmail.com',
       to: 'kabeloref@gmail.com',
       subject: 'BraJoes car wash login details',
       text: 'Hi. '+
-      '\n\nYour user details are as follows. '
+      '\n\n09:02 email '
     };
     transporter.sendMail(mailOptions, function(error, info){
         /*if (error.message == 'No recipients defined') {
